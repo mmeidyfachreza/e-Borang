@@ -9,7 +9,7 @@ class operatorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('Operator');
+        $this->middleware('Khusus:operator|admin');
     }
     /**
      * Display a listing of the resource.

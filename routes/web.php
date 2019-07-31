@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','indexController@index');
+
 Route::get('/tes', function () {
-    return view('operator.formupload');
+    return view('layouts.eborang2');
 });
+
+Route::middleware(['Khusus:admin'])->group(function () {
+    Route::resource('admin/kategori-dokumen', 'KatDokumenController');
+    //Route::resource('admin/dokumen', 'DokumenController');
+});
+
 
 //Route::resource('books', 'FileController');
 

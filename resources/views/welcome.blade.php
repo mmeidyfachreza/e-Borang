@@ -3,43 +3,89 @@
     <div class="search-panel">
         
     </div>
-    <div class="alert alert-success col-md-4">
+    {{-- <div class="alert alert-success col-md-4">
         <strong></strong>
-    </div>
-      <table class="table table-striped" style="width:100%">
-            <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Tahun</th>
-                
-                @if (Auth::user())
-                @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
-                <th scope="col">Aksi</th>
-                @endif    
-                @endif
-                
-              </tr>
-            </thead>
-            <tbody>
-                <?php $x=1?>
-                @foreach ($files as $data)
-                    <tr>
-                        <th scope="row">{{ $x++ }}</th>
-                        <td>{{$data->nama}}</td>
-                        <td>{{$data->tahun}}</td>
+    </div> --}}
+
+        <div class="card bg-light">
+            <div class="card-header">Dokumen Sarjana</div>
+                <div class="card-body">
+                    <table class="table table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Tahun</th>
+                            
+                            @if (Auth::user())
+                            @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                            <th scope="col">Aksi</th>
+                            @endif    
+                            @endif
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php $x=1?>
+                            @foreach ($files as $data)
+                                <tr>
+                                    <th scope="row">{{ $x++ }}</th>
+                                    <td>{{$data->nama}}</td>
+                                    <td>{{$data->tahun}}</td>
+                                    
+                                    @if (Auth::user())
+                                    @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                    <td><a href="{{ route('files.download', $data->uuid) }}">Download</a></td>    
+                                    @endif    
+                                    @endif
+                                    
+                                </tr>
+                            @endforeach
                         
-                        @if (Auth::user())
-                        @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
-                        <td><a href="{{ route('files.download', $data->uuid) }}">Download</a></td>    
-                        @endif    
-                        @endif
-                        
-                    </tr>
-                @endforeach
-              
-            </tbody>
-          </table>
+                        </tbody>
+                </table>
+            </div> 
+        </div>
+        <br>
+        <div class="card bg-light">
+                <div class="card-header">Dokumen Perguruan Tinggi</div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Tahun</th>
+                                
+                                @if (Auth::user())
+                                @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                <th scope="col">Aksi</th>
+                                @endif    
+                                @endif
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php $x=1?>
+                                @foreach ($files as $data)
+                                    <tr>
+                                        <th scope="row">{{ $x++ }}</th>
+                                        <td>{{$data->nama}}</td>
+                                        <td>{{$data->tahun}}</td>
+                                        
+                                        @if (Auth::user())
+                                        @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                        <td><a href="{{ route('files.download', $data->uuid) }}">Download</a></td>    
+                                        @endif    
+                                        @endif
+                                        
+                                    </tr>
+                                @endforeach
+                            
+                            </tbody>
+                    </table>
+                </div> 
+            </div>
 @endsection
 
 @section('sidebar')

@@ -19,7 +19,7 @@ class FileController extends Controller
     {
         //
         $files = File::all();
-        return view('operator.indexfile', compact('files'));
+        return view('operator.dokumen.indexfile', compact('files'));
     }
 
     /**
@@ -30,7 +30,7 @@ class FileController extends Controller
     public function create()
     {
         //
-        return view('operator.formupload');
+        return view('operator.dokumen.tambah');
     }
 
     /**
@@ -77,7 +77,7 @@ class FileController extends Controller
     {
         //
         $files = File::where('uuid', $uuid)->firstOrFail();
-        return view('operator.editfile',compact('files'));
+        return view('operator.dokumen.edit',compact('files'));
     }
 
     /**

@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Dokumen extends Model
 {
     //
     protected $fillable = ['uuid','namafile','publikasi', 'tahun', 'nama'];
-
-    public function scopeTahun($query,$tahun)
+    public function kat_dokumen()
     {
-        return $query->where('tahun', $tahun);
+        return $this->belongsTo('App\Kat_dokumen');
     }
 }

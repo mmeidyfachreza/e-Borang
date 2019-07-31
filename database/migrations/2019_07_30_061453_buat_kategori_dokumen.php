@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFilesTable extends Migration
+class BuatKategoriDokumen extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->nullable();
+        Schema::create('kat_dokumens', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nama');
-            $table->string('tahun');
-            $table->string('namafile')->nullable();
-            $table->enum('publikasi',['ya','tidak']);
+            $table->string('deksripsi');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('kat_dokumen');
     }
 }

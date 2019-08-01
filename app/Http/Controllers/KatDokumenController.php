@@ -32,8 +32,8 @@ class KatDokumenController extends Controller
     public function index()
     {
         //
-        $kat_doks= Kat_dokumen::all(); 
-        return view("admin.kat_dokumen.index",compact('kat_doks'));
+        $kat_dokumens= Kat_dokumen::all(); 
+        return view("admin.kat_dokumen.index",compact('kat_dokumens'));
     }
 
     /**
@@ -44,7 +44,7 @@ class KatDokumenController extends Controller
     public function create()
     {
        //
-       return view("admin.kat_dokumen.formtambah");
+       return view("admin.kat_dokumen.tambah");
     }
 
     /**
@@ -62,7 +62,7 @@ class KatDokumenController extends Controller
         $kat_dokumen->nama = $request->nama;
         $kat_dokumen->deskripsi = $request->deskripsi;
         $kat_dokumen->save();
-        return redirect()->route('kategori-dokumen.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('kategori-dokumen.index')->with('success','Data Berhasil Ditambahkan');
     }
 
     /**
@@ -82,9 +82,11 @@ class KatDokumenController extends Controller
      * @param  \App\Kat_dokumen  $kat_dokumen
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kat_dokumen $kat_dokumen)
+    public function edit($id)
     {
         //
+        $kat_dokumen = Kat_dokumen::find($id)->first();
+        return view('admin.kat_dokumen.edit',compact('kat_dokumen'));
     }
 
     /**
@@ -94,9 +96,14 @@ class KatDokumenController extends Controller
      * @param  \App\Kat_dokumen  $kat_dokumen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kat_dokumen $kat_dokumen)
+    public function update(Request $request, $id)
     {
         //
+        $kat_dokumen = Kat_dokumen::find($id)->first();
+        $kat_dokumen->update($request->all());
+  
+        return redirect()->route('kategori-dokumen.index')
+                        ->with('success','Data Berhasil Dirubah');
     }
 
     /**
@@ -105,8 +112,13 @@ class KatDokumenController extends Controller
      * @param  \App\Kat_dokumen  $kat_dokumen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kat_dokumen $kat_dokumen)
+    public function destroy($id)
     {
         //
+        $kat_dokumen = Kat_dokumen::find($id)->first();
+        $kat_dokumen->delete();
+  
+        return redirect()->route('kategori-dokumen.index')
+                        ->with('success','Data Berhasil Dihapus');
     }
 }

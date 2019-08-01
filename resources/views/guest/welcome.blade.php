@@ -1,5 +1,10 @@
-@extends('layouts.app_eborang')
-@section('content')
+@extends('guest.index')
+@section('subContent')
+    <div>
+        <h1 class="mt-4">Website E-Borang</h1>
+                <p>merupakan website yang menyediakan dokumen-dokumen dari univeresitas yang bersifat umum</p>
+                <p>pastikan anda login terlebih dahulu agar dapat mendownload dokumen yang tersedia .</p>
+    </div>
     <div class="search-panel">
         
     </div>
@@ -10,6 +15,17 @@
         <div class="card bg-light">
             <div class="card-header">Dokumen Sarjana</div>
                 <div class="card-body">
+                        <form class="form-inline" action="{{ route('guest.search') }}" method="POST">
+                            {{ csrf_field() }}
+                            <label for="email" class="mr-sm-2">Nama:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" name="nama" value="{{request('nama')}}">
+                            <label for="pwd" class="mr-sm-2">Tahun:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" name="tahun" value="{{request('tahun')}}">
+                            <button type="submit" class="btn btn-primary mb-2 mr-sm-2"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            @if (!request('nama')==null||!request('tahun')==null)
+                            <a href="{{url('/')}}" class="btn btn-danger mb-2">Ulang</a>    
+                            @endif
+                        </form>
                     <table class="table table-striped" style="width:100%">
                         <thead>
                         <tr>
@@ -86,31 +102,4 @@
                     </table>
                 </div> 
             </div>
-@endsection
-
-@section('sidebar')
-<a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-dashboard fa-fw mr-3"></span>
-            <span class="menu-collapsed">Form  Sarjana</span>
-            <span class="submenu-icon ml-auto"></span>
-        </div>
-    </a>
-    <div id='submenu1' class="collapse sidebar-submenu">
-        <a href="{{url('operator\indexfile')}}" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="menu-collapsed">Lihat File</span>
-        </a>
-    </div>
-    <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-user fa-fw mr-3"></span>
-            <span class="menu-collapsed">Form Perguruan Tinggi</span>
-            <span class="submenu-icon ml-auto"></span>
-        </div>
-    </a>
-    <div id='submenu2' class="collapse sidebar-submenu">
-        <a href="{{url('operator\indexfile2')}}" class="list-group-item list-group-item-action bg-dark text-white">
-            <span class="menu-collapsed">Lihat File</span>
-        </a>
-    </div>
 @endsection

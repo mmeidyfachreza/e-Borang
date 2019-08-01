@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,34 +12,37 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/','indexController@index');
-
-Route::get('/tes', function () {
-    return view('layouts.eborang2');
-});
+Route::post('/','indexController@search')->name('guest.search');
 
 Route::middleware(['Khusus:admin'])->group(function () {
     Route::resource('admin/kategori-dokumen', 'KatDokumenController');
+    Route::resource('admin/user', 'userController');
+    Route::get('admin','adminController@index')->name('admin.dashboard');
+    Route::post('/user','userController@search')->name('user.search');
     //Route::resource('admin/dokumen', 'DokumenController');
 });
 
+Route::middleware(['Khusus:operator|admin'])->group(function () {
+    Route::get('/operator','operatorController@index')->name('operator.dashboard');
+    Route::get('dokumen/','FileController@index')->name('files.indexfile');
+    Route::get('dokumen/tambahfile','FileController@create')->name('files.create');
+    Route::get('dokumen/{id}','FileController@show');
+    Route::post('dokumen/simpanfile','FileController@store')->name('files.store');
+    Route::get('dokumen/edit/{id}','FileController@edit')->name('files.edit');
+    Route::post('dokumen/edit/{id}','FileController@update')->name('files.update');
+    Route::get('dokumen/hapus/{id}','FileController@destroy')->name('files.hapus');
+});
 
-//Route::resource('books', 'FileController');
-
-Route::get('operator/indexfile','FileController@index')->name('operator.indexfile');
-Route::get('operator/tambahfile','FileController@create');
-Route::get('operator/{id}','FileController@show');
-Route::post('operator/simpanfile','FileController@store');
-Route::get('operator/edit/{id}','FileController@edit')->name('files.edit');
-Route::post('operator/edit/{id}','FileController@update')->name('files.update');
-Route::get('operator/hapus/{id}','FileController@destroy')->name('files.hapus');
-
-Route::get('files/{uuid}/download', 'FileController@download')->name('files.download');
+Route::middleware(['Khusus:admin|operator|dosen'])->group(function () {
+    Route::get('dokumen/{uuid}/download','FileController@download')->name('files.download');    
+});
 
 
-Route::get('/operator','operatorController@index');
+Route::get('/tes', function () {
+    return view('admin.index');
+});
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

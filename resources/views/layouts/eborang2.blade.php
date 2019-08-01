@@ -20,11 +20,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ asset('js/external/js/bootstrap.bundle.min.js') }}" defer></script>
     
 </head>
 <body>
     <div id="app">
-        <div id="header-container" class="header-border">
+        <div id="header-container" class="header-border"  style="height:200px">
             <div class="headerdiv">
               <a href="" class="headerleft">
                 <img src="{{asset('image/header.jpg')}}" class="img-fluid" alt="header SU">
@@ -32,7 +33,6 @@
             </div>     
         </div>
         <div class="d-flex" id="wrapper">
-
             <!-- Sidebar -->
             <div class="bg-light border-right" id="sidebar-wrapper">
               <div class="sidebar-heading">{{ config('app.name', 'Laravel') }} </div>
@@ -72,7 +72,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{{url('/')}}">Halaman Utama <span class="sr-only">(current)</span></a>
                     </li>
                     {{-- <li class="nav-item">
                       <a class="nav-link" href="#">Link</a>
@@ -81,11 +81,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                 @if (Route::has('register'))
+                 {{-- @if (Route::has('register'))
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
-                 @endif
+                 @endif --}}
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -93,7 +93,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Beranda</a>
+                            <p class="dropdown-item" disable> User : {{Auth::user()->roles->first()->name}}</p>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route(Auth::user()->roles->first()->name.'.dashboard')}}">Beranda</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -112,11 +114,8 @@
                 </div>
               </nav>
         
-              <div class="container-fluid" style="padding-top:15px;padding-bottom:15px">
+              <div class="container-fluid" style="padding-top:15px;padding-bottom:15px;background-color:white;min-height:300px">
                 @yield('content')
-                <h1 class="mt-4">Simple Sidebar</h1>
-                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
               </div>
             </div>
             <!-- /#page-content-wrapper -->
@@ -125,7 +124,7 @@
           <!-- /#wrapper -->
         
           <!-- Bootstrap core JavaScript -->
-          <script src="{{ asset('js/external/js/bootstrap.bundle.min.js') }}" defer></script>
+          
 
           <!-- Menu Toggle Script -->
           <script>

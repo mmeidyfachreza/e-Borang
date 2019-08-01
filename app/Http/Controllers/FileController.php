@@ -53,7 +53,7 @@ class FileController extends Controller
             $request->excel->storeAs('files', $file['namafile']);
         }
         File::create($file);
-        return redirect()->route('operator.indexfile');
+        return redirect()->route('files.indexfile');
     }
 
     /**
@@ -112,7 +112,7 @@ class FileController extends Controller
         $file->nama = $request->nama;
         $file->update();
 
-        return redirect()->route('operator.indexfile');
+        return redirect()->route('files.indexfile');
 
     }
 
@@ -130,7 +130,7 @@ class FileController extends Controller
        
         Filee::delete($pathToFile);
         $files->delete();
-        return redirect()->route('operator.indexfile');
+        return redirect()->route('files.indexfile');
 
     }
 
@@ -139,5 +139,11 @@ class FileController extends Controller
         $files = File::where('uuid', $uuid)->firstOrFail();
         $pathToFile = storage_path('app/files/' . $files->namafile);
         return response()->download($pathToFile);
+    }
+
+    public function searching(Request $request)
+    {
+        # code...
+        
     }
 }

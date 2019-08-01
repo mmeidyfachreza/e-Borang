@@ -71,7 +71,7 @@ class RegisterController extends Controller
           ]);
           $user
              ->roles()
-             ->attach(Role::where('name', 'operator')->first());
+             ->attach(Role::where('name', 'dosen')->first());
           return $user;
     }
 }

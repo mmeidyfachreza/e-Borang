@@ -13,17 +13,17 @@ class BuatTableDokumen extends Migration
      */
     public function up()
     {
-        Schema::create('dokumens', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->nullable();
-            $table->string('nama');
-            $table->string('tahun');
-            $table->string('namafile')->nullable();
-            $table->enum('publikasi',['ya','tidak']);
-            $table->integer('kat_dokumen_id')->unsigned();
-            $table->timestamps();
-            $table->foreign('kat_dokumen_id')->references('id')->on('kat_dokumens')->onDelete('cascade');
-        });
+        // Schema::create('dokumens', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->uuid('uuid')->nullable();
+        //     $table->string('nama');
+        //     $table->string('tahun');
+        //     $table->string('namafile')->nullable();
+        //     $table->enum('publikasi',['ya','tidak']);
+        //     $table->integer('kat_dokumen_id')->unsigned();
+        //     $table->timestamps();
+        //     $table->foreign('kat_dokumen_id')->references('id')->on('kat_dokumens')->onDelete('cascade');
+        // });
     }
 
     /**

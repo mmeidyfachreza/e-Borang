@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Guest;
+use App\FileSarjana;
 use Illuminate\Http\Request;
 
-class GuestController extends Controller
+class FileSarjanaController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware('Khusus:admin');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +46,10 @@ class GuestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Guest  $guest
+     * @param  \App\FileSarjana  $fileSarjana
      * @return \Illuminate\Http\Response
      */
-    public function show(Guest $guest)
+    public function show(FileSarjana $fileSarjana)
     {
         //
     }
@@ -52,10 +57,10 @@ class GuestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Guest  $guest
+     * @param  \App\FileSarjana  $fileSarjana
      * @return \Illuminate\Http\Response
      */
-    public function edit(Guest $guest)
+    public function edit(FileSarjana $fileSarjana)
     {
         //
     }
@@ -64,10 +69,10 @@ class GuestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Guest  $guest
+     * @param  \App\FileSarjana  $fileSarjana
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Guest $guest)
+    public function update(Request $request, FileSarjana $fileSarjana)
     {
         //
     }
@@ -75,10 +80,10 @@ class GuestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Guest  $guest
+     * @param  \App\FileSarjana  $fileSarjana
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Guest $guest)
+    public function destroy(FileSarjana $fileSarjana)
     {
         //
     }

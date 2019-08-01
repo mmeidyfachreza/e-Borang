@@ -7,10 +7,6 @@ use App\Operator;
 
 class operatorController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('Khusus:operator|admin');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class operatorController extends Controller
      */
     public function index()
     {
-        $operators = Operator::all();
-        return view('operator.awal',compact('operators'));
+        //$operators = Operator::all();
+        return view('operator.index');
     }
 
     /**

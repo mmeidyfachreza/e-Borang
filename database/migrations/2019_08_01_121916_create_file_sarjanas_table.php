@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Guest extends Migration
+class CreateFileSarjanasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class Guest extends Migration
      */
     public function up()
     {
-        Schema::create('guest', function (Blueprint $table) {
+        Schema::create('file_sarjanas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_identitas');
+            $table->uuid('uuid')->nullable();
             $table->string('nama');
-            $table->string('alamat');
-            $table->string('no_hp');
+            $table->string('tahun');
+            $table->string('namafile')->nullable();
+            $table->enum('publikasi',['ya','tidak']);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class Guest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guest');
+        Schema::dropIfExists('file_sarjanas');
     }
 }

@@ -5,9 +5,9 @@
         asdsad
     </div> --}}
           <div class="card bg-light">
-                <div class="card-header">Upload Dokumen</div>
+                <div class="card-header">Ubah Data Dokumen</div>
                     <div class="card-body">
-                            <form action="{{ url('operator/edit/'.$files->uuid) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('files.update',$files->uuid) }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                     <div class="form-group col-md-6">
                                         <div class="form-group">

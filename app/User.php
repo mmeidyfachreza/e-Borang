@@ -70,4 +70,17 @@ class User extends Authenticatable
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    public function scopeSearch($query,$nama,$email,$no_hp)
+    {
+        
+        return $query->where('name','like','%'.$nama.'%')
+        ->where('email','like','%'.$email.'%')
+        ->where('no_hp', 'like','%'.$no_hp.'%')
+        ->orWhere('no_hp', 'like','%'.$no_hp.'%')
+        ->orWhere('name','like','%'.$nama.'%')
+        ->orWhere('email','like','%'.$email.'%');
+   
+        //return $query->where('email','banawa');
+    }
 }

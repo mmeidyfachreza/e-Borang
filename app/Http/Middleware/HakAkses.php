@@ -16,6 +16,7 @@ class HakAkses
     public function handle($request, Closure $next, $reqrole)
     {
         $roles = explode('|', $reqrole);
+        
         foreach ($roles as $role) {
             if (Auth::check() && Auth::user()->roles->first()->name == $role) {
                 return $next($request);

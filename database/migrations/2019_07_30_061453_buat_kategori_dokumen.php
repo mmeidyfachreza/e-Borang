@@ -17,6 +17,7 @@ class BuatKategoriDokumen extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('deksripsi');
+            $table->string('slug_judul');
             $table->timestamps();
         });
     }

@@ -41,7 +41,6 @@ class userController extends Controller
     public function store(Request $request)
     {
         //
-        
         $user = new User();
         $user->name = $request->nama;
         $user->no_hp = $request->no_hp;
@@ -72,9 +71,12 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
+        $jabatan = Role::all();
+        $user= User::where('id', $id)->firstOrFail();
+        return view('admin.user.edit',compact('jabatan','user'));
     }
 
     /**

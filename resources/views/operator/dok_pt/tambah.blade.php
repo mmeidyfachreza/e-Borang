@@ -7,7 +7,7 @@
           <div class="card bg-light">
                 <div class="card-header">Upload Dokumen</div>
                     <div class="card-body">
-                            <form action="{{ route('files.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('dok_pt.store') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                     <div class="form-group">
                                         <div class="form-group">

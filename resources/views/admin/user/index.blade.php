@@ -44,11 +44,11 @@
                                           <td>{{$data->email}}</td>
                                           <td>{{$data->no_hp}}</td>
                                           <td>{{$data->jabatan}}</td>
-                                          <form action="{{ route('kategori-dokumen.destroy',$data->id) }}" method="POST">
+                                          <form action="{{ route('user.destroy',$data->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
                                           <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                            <a class="btn btn-warning" href="{{ route('kategori-dokumen.edit', $data->id) }}"><i class="far fa-edit"></i></a></td>
+                                            <a class="btn btn-warning" href="{{ route('user.edit', $data->id) }}"><i class="far fa-edit"></i></a></td>
                                           </form>
                                       </tr>
                                   @endforeach

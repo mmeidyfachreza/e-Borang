@@ -15,7 +15,9 @@ use App\Http\Controllers\adminController;
 Auth::routes();
 
 Route::get('/','indexController@index');
-Route::post('/','indexController@search')->name('guest.search');
+Route::post('/pencarian/pt','indexController@search1')->name('guest.searchpt');
+Route::post('/pencarian/sarjana','indexController@search2')->name('guest.searchsarjana');
+
 
 Route::middleware(['Khusus:admin'])->group(function () {
     Route::resource('admin/kategori-dokumen', 'KatDokumenController');
@@ -27,17 +29,13 @@ Route::middleware(['Khusus:admin'])->group(function () {
 
 Route::middleware(['Khusus:operator|admin'])->group(function () {
     Route::get('/operator','operatorController@index')->name('operator.dashboard');
-    Route::get('dokumen/','FileController@index')->name('files.indexfile');
-    Route::get('dokumen/tambahfile','FileController@create')->name('files.create');
-    Route::get('dokumen/{id}','FileController@show');
-    Route::post('dokumen/simpanfile','FileController@store')->name('files.store');
-    Route::get('dokumen/edit/{id}','FileController@edit')->name('files.edit');
-    Route::post('dokumen/edit/{id}','FileController@update')->name('files.update');
-    Route::get('dokumen/hapus/{id}','FileController@destroy')->name('files.hapus');
+    Route::resource('dok_sarjana', 'DokSarjanaController');
+    Route::resource('dok_pt', 'DokPtController');
 });
 
 Route::middleware(['Khusus:admin|operator|dosen'])->group(function () {
-    Route::get('dokumen/{uuid}/download','FileController@download')->name('files.download');    
+    Route::get('dok_sarjana/{uuid}/download','DokSarjanaController@download')->name('dok_sarjana.download'); 
+    Route::get('dok_pt/{uuid}/download','DokPtController@download')->name('dok_pt.download');    
 });
 
 

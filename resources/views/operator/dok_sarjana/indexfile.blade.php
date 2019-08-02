@@ -21,14 +21,21 @@
                             </thead>
                             <tbody>
                                 <?php $x=1?>
-                                @foreach ($files as $data)
+                                @foreach ($dok_sarjana as $data)
                                     <tr>
                                         <th scope="row">{{ $x++ }}</th>
                                         <td>{{$data->nama}}</td>
                                         <td>{{$data->tahun}}</td>
                                         <td>{{ $data->namafile }}</td>
                                         <td>{{ $data->publikasi }}</td>
-                                        <td><a href="{{ route('files.download', $data->uuid) }}">Download</a> | <a href="{{ route('files.hapus', $data->uuid) }}">Hapus</a> | <a href="{{ route('files.edit', $data->uuid) }}">Edit</a></td>
+                                        <form action="{{ route('dok_sarjana.destroy',$data->uuid) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                          <a class="btn btn-warning" href="{{ route('dok_sarjana.edit', $data->uuid) }}"><i class="far fa-edit"></i></a>
+                                          <a class="btn btn-primary" href="{{ route('dok_sarjana.download', $data->uuid) }}"><i class="fas fa-file-download"></i></a></td>
+                                        </form>
+                                        
                                     </tr>
                                 @endforeach
                             

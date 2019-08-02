@@ -13,8 +13,8 @@ class CreateFileSarjanasTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_sarjanas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('dok_pts', function (Blueprint $table) {
+            $table->increments('id');
             $table->uuid('uuid')->nullable();
             $table->string('nama');
             $table->string('tahun');

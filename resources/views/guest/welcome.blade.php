@@ -15,7 +15,7 @@
         <div class="card bg-light">
             <div class="card-header">Dokumen Sarjana</div>
                 <div class="card-body">
-                        <form class="form-inline" action="{{ route('guest.search') }}" method="POST">
+                        <form class="form-inline" action="{{ route('guest.searchsarjana') }}" method="POST">
                             {{ csrf_field() }}
                             <label for="email" class="mr-sm-2">Nama:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" name="nama" value="{{request('nama')}}">
@@ -43,7 +43,7 @@
                         </thead>
                         <tbody>
                             <?php $x=1?>
-                            @foreach ($files as $data)
+                            @foreach ($dok_sarjana as $data)
                                 <tr>
                                     <th scope="row">{{ $x++ }}</th>
                                     <td>{{$data->nama}}</td>
@@ -51,7 +51,7 @@
                                     
                                     @if (Auth::user())
                                     @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
-                                    <td><a href="{{ route('files.download', $data->uuid) }}">Download</a></td>    
+                                    <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif
                                     
@@ -66,6 +66,17 @@
         <div class="card bg-light">
                 <div class="card-header">Dokumen Perguruan Tinggi</div>
                     <div class="card-body">
+                        <form class="form-inline" action="{{ route('guest.searchpt') }}" method="POST">
+                            {{ csrf_field() }}
+                            <label for="email" class="mr-sm-2">Nama:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" name="namaS" value="{{request('namaS')}}">
+                            <label for="pwd" class="mr-sm-2">Tahun:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" name="tahunS" value="{{request('tahunS')}}">
+                            <button type="submit" class="btn btn-primary mb-2 mr-sm-2"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            @if (!request('namaS')==null||!request('tahunS')==null)
+                            <a href="{{url('/')}}" class="btn btn-danger mb-2">Ulang</a>    
+                            @endif
+                        </form>
                         <table class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
@@ -83,7 +94,7 @@
                             </thead>
                             <tbody>
                                 <?php $x=1?>
-                                @foreach ($files as $data)
+                                @foreach ($dok_pt as $data)
                                     <tr>
                                         <th scope="row">{{ $x++ }}</th>
                                         <td>{{$data->nama}}</td>
@@ -91,7 +102,7 @@
                                         
                                         @if (Auth::user())
                                         @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
-                                        <td><a href="{{ route('files.download', $data->uuid) }}">Download</a></td>    
+                                        <td><a href="{{ route('dok_pt.download', $data->uuid) }}">Download</a></td>    
                                         @endif    
                                         @endif
                                         

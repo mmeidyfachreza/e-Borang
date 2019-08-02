@@ -48,7 +48,6 @@
                                       <a href="{{URL::previous()}}" class="btn btn-danger">Batal</a>
                                     </div>
                             </form>
-                    </table>
                 </div> 
             </div>
 @endsection

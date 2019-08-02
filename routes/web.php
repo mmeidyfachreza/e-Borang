@@ -42,7 +42,7 @@ Route::middleware(['Khusus:admin|operator|dosen'])->group(function () {
 
 
 Route::get('/tes', function () {
-    return view('admin.index');
+    return view('auth.login2');
 });
 
 

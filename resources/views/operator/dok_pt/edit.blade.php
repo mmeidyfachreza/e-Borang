@@ -20,6 +20,17 @@
                                             <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" placeholder="masukan tahun" value="{{$dok_pt->tahun}}">
                                         </div>
                                         <div class="form-group">
+                                                <label >Kategori Dokumen</label>
+                                                <select name="kategori_id" class="custom-select">
+                                                    {{-- <option selected>Pilih</option> --}}
+                                                    @foreach ($katdok_pt as $item)
+                                                        <option @if ($item->id==$dok_pt->katdokpt_id)
+                                                           selected 
+                                                        @endif value="{{$item->id}}">{{$item->nama}}</option>    
+                                                    @endforeach
+                                                </select> 
+                                            </div>
+                                        <div class="form-group">
                                             <label for="InputTahun">Publikasi : ya </label>
                                             <input type="checkbox" name="publikasi" id="publikasi" @if ($dok_pt->publikasi=="ya") checked @else  @endif value="ya">
                                         </div>

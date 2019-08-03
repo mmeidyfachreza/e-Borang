@@ -15,6 +15,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tahun</th>
                                     <th scope="col">File Diupload</th>
+                                    <th scope="col">Kategori</th>
                                     <th scope="col">Publikasi</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -27,6 +28,7 @@
                                         <td>{{$data->nama}}</td>
                                         <td>{{$data->tahun}}</td>
                                         <td>{{ $data->namafile }}</td>
+                                        <td>{{ $data->kat_dokumen->nama }}</td>
                                         <td>{{ $data->publikasi }}</td>
                                         <form action="{{ route('dok_sarjana.destroy',$data->uuid) }}" method="POST">
                                             @csrf

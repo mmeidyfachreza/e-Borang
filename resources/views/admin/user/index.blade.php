@@ -43,12 +43,14 @@
                                           <td>{{$data->name}}</td>
                                           <td>{{$data->email}}</td>
                                           <td>{{$data->no_hp}}</td>
-                                          <td>{{$data->jabatan}}</td>
+                                          <td>{{$data->roles->first()->name}}</td>
                                           <form action="{{ route('user.destroy',$data->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
                                           <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                            <a class="btn btn-warning" href="{{ route('user.edit', $data->id) }}"><i class="far fa-edit"></i></a></td>
+                                            <a class="btn btn-warning" href="{{ route('user.edit', $data->id) }}"><i class="far fa-edit"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('user.show', $data->id) }}"><i class="far fa-eye"></i></a>
+                                          </td>
                                           </form>
                                       </tr>
                                   @endforeach

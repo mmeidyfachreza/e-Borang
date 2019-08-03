@@ -10,7 +10,7 @@ class Dok_pt extends Model
     protected $fillable = ['uuid','namafile','publikasi', 'tahun', 'nama'];
     public function kat_dokumen()
     {
-        return $this->belongsTo('App\Kat_dokumen');
+        return $this->belongsTo('App\Katdokpt','katdokpt_id');
     }
 
     public function scopeSearch1($query,$nama,$tahun)

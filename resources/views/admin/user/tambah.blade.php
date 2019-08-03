@@ -11,12 +11,16 @@
                                 {{ csrf_field() }}
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
+                                            <label >No Identitas</label>
+                                            <input type="text" class="form-control" name="no_id" aria-describedby="" placeholder="masukan No Identitas" >
+                                        </div>
+                                        <div class="form-group">
                                             <label >Nama Lengkap</label>
                                             <input type="text" class="form-control" name="nama" aria-describedby="" placeholder="masukan nama" >
                                         </div>
                                         <div class="form-group">
-                                            <label >No Identitas</label>
-                                            <input type="text" class="form-control" name="no_id" aria-describedby="" placeholder="masukan No Identitas" >
+                                            <label >Tanggal Lahir</label>
+                                            <input type="text" class="form-control" name="tgl_lahir" aria-describedby="" placeholder="Tahun-Bulan-Tanggal" >
                                         </div>
                                         <div class="form-group">
                                             <label >No HP</label>

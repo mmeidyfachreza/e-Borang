@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dok_pt;
+use App\Katdokpt;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\File;
@@ -18,6 +19,7 @@ class DokPtController extends Controller
     {
         //
         $dok_pt = Dok_pt::all();
+        
         return view('operator.dok_pt.indexfile', compact('dok_pt'));
     }
 
@@ -29,7 +31,8 @@ class DokPtController extends Controller
     public function create()
     {
         //
-        return view('operator.dok_pt.tambah');
+        $kat_dok=Katdokpt::all();
+        return view('operator.dok_pt.tambah',compact('kat_dok'));
     }
 
     /**
@@ -41,17 +44,17 @@ class DokPtController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $dok_pt = $request->all();
-        $dok_pt['uuid'] = (string)Uuid::generate();
+        $kat_dok=Katdokpt::find($request->kategori_id);
+        $dok_pt = new Dok_pt();
+        $dok_pt->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel')) {
-            $dok_pt['namafile']= time().$request->excel->getClientOriginalName();
-            $dok_pt['publikasi'] = (!isset($request->publikasi)) ? "tidak" :"ya";
-            $dok_pt['tahun'] = $request->tahun;
-            $dok_pt['nama'] = $request->nama;
-            $request->excel->storeAs('dok_pt', $dok_pt['namafile']);
+            $dok_pt->namafile= time().$request->excel->getClientOriginalName();
+            $dok_pt->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
+            $dok_pt->tahun = $request->tahun;
+            $dok_pt->nama = $request->nama;
+            $request->excel->storeAs('dok_pt', $dok_pt->namafile);
         }
-        Dok_pt::create($dok_pt);
+        $kat_dok->dok_pt()->save($dok_pt);
         return redirect()->route('dok_pt.index');
     }
 
@@ -76,7 +79,8 @@ class DokPtController extends Controller
     {
         //
         $dok_pt = Dok_pt::where('uuid', $uuid)->firstOrFail();
-        return view('operator.dok_pt.edit',compact('dok_pt'));
+        $katdok_pt=Katdokpt::all();
+        return view('operator.dok_pt.edit',compact('dok_pt','katdok_pt'));
     }
 
     /**
@@ -88,17 +92,12 @@ class DokPtController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        //
-        $dok_pt = Dok_pt::where('uuid', $uuid)->firstOrFail();
-        
         $this->validate($request,[
             'nama' => 'required',
-            'tahun' => 'required',
-            
+            'tahun' => 'required',   
         ]);
-
-        
-
+        $dok_pt = Dok_pt::where('uuid', $uuid)->firstOrFail();
+        $kat_dok=Katdokpt::find($request->kategori_id);
         $dok_pt->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel') && isset($request->excel)) {
             $pathToFile = storage_path('app/dok_pt/' . $dok_pt->namafile);
@@ -109,8 +108,7 @@ class DokPtController extends Controller
         $dok_pt->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
         $dok_pt->tahun = $request->tahun;
         $dok_pt->nama = $request->nama;
-        $dok_pt->update();
-
+        $kat_dok->dok_pt()->save($dok_pt);
         return redirect()->route('dok_pt.index');
 
     }

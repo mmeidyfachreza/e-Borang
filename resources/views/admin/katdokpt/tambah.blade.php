@@ -9,7 +9,7 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('kategori-dokumen.store') }}" method="POST">
+<form action="{{ route('katdokpt.store') }}" method="POST">
     {{ csrf_field() }}
         <div class="form-group">
             <div class="form-group">

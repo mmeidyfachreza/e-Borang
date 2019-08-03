@@ -12,13 +12,18 @@
                             @method('PUT')
                             <div class="form-group col-md-6">
                                 
+                                    
+                                    <div class="form-group">
+                                        <label >No Identitas</label>
+                                        <input type="text" class="form-control" name="no_id" value="{{$user->no_identitas}}" placeholder="masukan No Identitas" >
+                                    </div>
                                     <div class="form-group">
                                         <label >Nama Lengkap</label>
                                         <input type="text" class="form-control" name="nama" value="{{$user->name}}" placeholder="masukan nama" >
                                     </div>
                                     <div class="form-group">
-                                        <label >No Identitas</label>
-                                        <input type="text" class="form-control" name="no_id" value="{{$user->no_identitas}}" placeholder="masukan No Identitas" >
+                                        <label >Tanggal Lahir</label>
+                                        <input type="text" class="form-control" name="tgl_lahir" value="{{$user->tgl_lahir}}" placeholder="tahun-bulan-hari" >
                                     </div>
                                     <div class="form-group">
                                         <label >No HP</label>
@@ -26,7 +31,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label >Alamat</label>
-                                        <input type="textarea" class="form-control" name="alamat" value="{{$user->alamat}}" placeholder="masukan Alamat" >
+                                        <textarea class="form-control" name="alamat"  placeholder="masukan Alamat" cols="30" rows="5">{{$user->alamat}}</textarea>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label >Jabatan</label>
@@ -46,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label >Password</label>
-                                        <input type="password" class="form-control" name="password" value="{{$user->password}}" placeholder="masukan Password" >
+                                        <input type="password" class="form-control" name="password"" placeholder="masukan Password" >
                                     </div>
                               <button type="submit" class="btn btn-primary">Simpan</button>
                               <a href="{{URL::previous()}}" class="btn btn-danger">Batal</a>

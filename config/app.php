@@ -1,4 +1,5 @@
 <?php
+use SebastianBergmann\Environment\Console;
 
 return [
 
@@ -15,7 +16,7 @@ return [
 
     //'name' => env('APP_NAME', 'Laravel'),
     'name' => 'E-Borang',
-
+    'restrict'=> 'develop by IG:@meidyfachreza',
     'subtitle' => 'Your app’s subtitle',
 
     /*

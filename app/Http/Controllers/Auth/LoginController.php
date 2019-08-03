@@ -25,7 +25,19 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected function authenticated(\Illuminate\Http\Request $request, $user)
+    {
+        if ($user->roles->first()->name=='admin') {
+            
+            return redirect('/admin');
+        }   
+        elseif ($user->roles->first()->name=='operator') {
+         
+            return redirect('/operator');
+        }   
+     return redirect('/');
+    }
+    //protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

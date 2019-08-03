@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Kat_dokumen;
+use App\Katdokpt;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-//use App\Http\Requests\KatDokumenStoreRequest as modReq;
 
-class KatDokumenController extends Controller
+class KatdokptController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +16,8 @@ class KatDokumenController extends Controller
     public function index()
     {
         //
-        $kat_dokumens= Kat_dokumen::all(); 
-        return view("admin.kat_dokumen.index",compact('kat_dokumens'));
+        $katdokpts= Katdokpt::all(); 
+        return view("admin.katdokpt.index",compact('katdokpts'));
     }
 
     /**
@@ -29,7 +28,7 @@ class KatDokumenController extends Controller
     public function create()
     {
        //
-       return view("admin.kat_dokumen.tambah");
+       return view("admin.katdokpt.tambah");
     }
 
     /**
@@ -42,21 +41,22 @@ class KatDokumenController extends Controller
     {
         //
         
-        $kat_dokumen = new Kat_dokumen();
+        $katdokpt = new Katdokpt();
         
-        $kat_dokumen->nama = $request->nama;
-        $kat_dokumen->deskripsi = $request->deskripsi;
-        $kat_dokumen->save();
-        return redirect()->route('kategori-dokumen.index')->with('success','Data Berhasil Ditambahkan');
+        $katdokpt->nama = $request->nama;
+        $katdokpt->deskripsi = $request->deskripsi;
+        $katdokpt->slug_judul = Str::slug($request->nama);
+        $katdokpt->save();
+        return redirect()->route('katdokpt.index')->with('success','Data Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdokpt  $katdokpt
      * @return \Illuminate\Http\Response
      */
-    public function show(Kat_dokumen $kat_dokumen)
+    public function show(Katdokpt $katdokpt)
     {
         //
     }
@@ -64,46 +64,46 @@ class KatDokumenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdokpt  $katdokpt
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        return view('admin.kat_dokumen.edit',compact('kat_dokumen'));
+        $katdokpt = Katdokpt::find($id)->first();
+        return view('admin.katdokpt.edit',compact('katdokpt'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdokpt  $katdokpt
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        $kat_dokumen->update($request->all());
+        $katdokpt = Katdokpt::find($id)->first();
+        $katdokpt->update($request->all());
   
-        return redirect()->route('kategori-dokumen.index')
+        return redirect()->route('katdokpt.index')
                         ->with('success','Data Berhasil Dirubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdokpt  $katdokpt
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        $kat_dokumen->delete();
+        $katdokpt = Katdokpt::find($id)->first();
+        $katdokpt->delete();
   
-        return redirect()->route('kategori-dokumen.index')
+        return redirect()->route('katdokpt.index')
                         ->with('success','Data Berhasil Dihapus');
     }
 }

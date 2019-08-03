@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Operator;
+use App\Katdokpt;
 
 class operatorController extends Controller
 {
@@ -14,8 +14,14 @@ class operatorController extends Controller
      */
     public function index()
     {
-        //$operators = Operator::all();
+        $submenus1 = Katdokpt::where('slug_judul',);
         return view('operator.index');
+    }
+
+    public function submenu($slug)
+    {
+        $submenus1 = Katdokpt::where('slug_judul',$slug);
+        return view('operator.submenu',compact('submenus1'));
     }
 
     /**

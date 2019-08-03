@@ -68,7 +68,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-        
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
@@ -133,11 +132,9 @@
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
                 });
+                
             });  
-            // $("#menu-toggle").click(function(e) {
-            //   e.preventDefault();
-            //   $("#wrapper").toggleClass("toggled");
-            // });
+            console.log('{{config('app.restrict')}}');
           </script>
         
 </body>

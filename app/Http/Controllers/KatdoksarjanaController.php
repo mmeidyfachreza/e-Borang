@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Kat_dokumen;
+use App\Katdoksarjana;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-//use App\Http\Requests\KatDokumenStoreRequest as modReq;
 
-class KatDokumenController extends Controller
+class KatdoksarjanaController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +16,8 @@ class KatDokumenController extends Controller
     public function index()
     {
         //
-        $kat_dokumens= Kat_dokumen::all(); 
-        return view("admin.kat_dokumen.index",compact('kat_dokumens'));
+        $katdoksarjanas= Katdoksarjana::all(); 
+        return view("admin.katdoksarjana.index",compact('katdoksarjanas'));
     }
 
     /**
@@ -29,7 +28,7 @@ class KatDokumenController extends Controller
     public function create()
     {
        //
-       return view("admin.kat_dokumen.tambah");
+       return view("admin.katdoksarjana.tambah");
     }
 
     /**
@@ -42,21 +41,22 @@ class KatDokumenController extends Controller
     {
         //
         
-        $kat_dokumen = new Kat_dokumen();
+        $katdoksarjana = new Katdoksarjana();
         
-        $kat_dokumen->nama = $request->nama;
-        $kat_dokumen->deskripsi = $request->deskripsi;
-        $kat_dokumen->save();
-        return redirect()->route('kategori-dokumen.index')->with('success','Data Berhasil Ditambahkan');
+        $katdoksarjana->nama = $request->nama;
+        $katdoksarjana->deskripsi = $request->deskripsi;
+        $katdoksarjana->slug_judul = Str::slug($request->nama);
+        $katdoksarjana->save();
+        return redirect()->route('katdoksarjana.index')->with('success','Data Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdoksarjana  $katdoksarjana
      * @return \Illuminate\Http\Response
      */
-    public function show(Kat_dokumen $kat_dokumen)
+    public function show(Katdoksarjana $katdoksarjana)
     {
         //
     }
@@ -64,46 +64,46 @@ class KatDokumenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdoksarjana  $katdoksarjana
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        return view('admin.kat_dokumen.edit',compact('kat_dokumen'));
+        $katdoksarjana = Katdoksarjana::find($id)->first();
+        return view('admin.katdoksarjana.edit',compact('katdoksarjana'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdoksarjana  $katdoksarjana
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        $kat_dokumen->update($request->all());
+        $katdoksarjana = Katdoksarjana::find($id)->first();
+        $katdoksarjana->update($request->all());
   
-        return redirect()->route('kategori-dokumen.index')
+        return redirect()->route('katdoksarjana.index')
                         ->with('success','Data Berhasil Dirubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Kat_dokumen  $kat_dokumen
+     * @param  \App\Katdoksarjana  $katdoksarjana
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $kat_dokumen = Kat_dokumen::find($id)->first();
-        $kat_dokumen->delete();
+        $katdoksarjana = Katdoksarjana::find($id)->first();
+        $katdoksarjana->delete();
   
-        return redirect()->route('kategori-dokumen.index')
+        return redirect()->route('katdoksarjana.index')
                         ->with('success','Data Berhasil Dihapus');
     }
 }

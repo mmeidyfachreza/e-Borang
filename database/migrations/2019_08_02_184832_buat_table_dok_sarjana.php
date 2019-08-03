@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFileSarjanasTable extends Migration
+class BuatTableDokSarjana extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateFileSarjanasTable extends Migration
      */
     public function up()
     {
-        Schema::create('dok_pts', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('dok_sarjanas', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('katdoksarjana_id')->unsigned();
+            $table->foreign('katdoksarjana_id')
+            ->references('id')->on('katdoksarjanas')
+            ->onDelete('cascade');
             $table->uuid('uuid')->nullable();
             $table->string('nama');
             $table->string('tahun');
@@ -31,6 +35,9 @@ class CreateFileSarjanasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_sarjanas');
+        Schema::table('dok_sarjanas', function (Blueprint $table) {
+            $table->dropForeign(['kat_dok_sarjana_id']);
+        });
+        Schema::dropIfExists('dok_sarjanas');
     }
 }

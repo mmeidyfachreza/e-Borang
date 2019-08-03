@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BuatKategoriDokumen extends Migration
+class BuatTableKategoriDokPt extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class BuatKategoriDokumen extends Migration
      */
     public function up()
     {
-        Schema::create('kat_dokumens', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('katdokpts', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('deksripsi');
+            $table->string('deskripsi');
             $table->string('slug_judul');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class BuatKategoriDokumen extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kat_dokumen');
+        Schema::dropIfExists('kat_dok_pts');
     }
 }

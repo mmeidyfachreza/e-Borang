@@ -44,6 +44,7 @@ class userController extends Controller
         $user = new User();
         $user->name = $request->nama;
         $user->no_hp = $request->no_hp;
+        $user->tgl_lahir = $request->tgl_lahir;
         $user->no_identitas = $request->no_id;
         $user->alamat = $request->alamat;
         $user->email = $request->email;
@@ -60,9 +61,11 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
+        $user= User::where('id', $id)->firstOrFail();
+        return view('admin.user.lihat',compact('user'));
     }
 
     /**
@@ -86,9 +89,21 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        $user->name = $request->nama;
+        $user->tgl_lahir = $request->tgl_lahir;
+        $user->no_hp = $request->no_hp;
+        $user->no_identitas = $request->no_id;
+        $user->alamat = $request->alamat;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->update();
+        $role = Role::find($request->jabatan);
+        $user->roles()->attach($role);
+        return redirect()->route('user.index')->with('success','Berhasil menambahkan User');
     }
 
     /**
@@ -97,9 +112,13 @@ class userController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
+        $user = User::find($id);
+        $user->roles()->detach();
+        $user->delete();
+        return redirect()->route('user.index')->with('success','Berhasil menghapus User');
     }
 
     public function search(Request $request)

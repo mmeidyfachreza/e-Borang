@@ -10,7 +10,7 @@ class Dok_sarjana extends Model
     protected $fillable = ['uuid','namafile','publikasi', 'tahun', 'nama'];
     public function kat_dokumen()
     {
-        return $this->belongsTo('App\Kat_dokumen');
+        return $this->belongsTo('App\Katdoksarjana','katdoksarjana_id');
     }
 
     public function scopeSearch2($query,$nama,$tahun)

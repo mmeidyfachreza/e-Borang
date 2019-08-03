@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dok_sarjana;
+use App\Katdoksarjana;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\File;
@@ -29,7 +30,8 @@ class DokSarjanaController extends Controller
     public function create()
     {
         //
-        return view('operator.dok_sarjana.tambah');
+        $kat_dok=Katdoksarjana::all();
+        return view('operator.dok_sarjana.tambah',compact('kat_dok'));
     }
 
     /**
@@ -41,17 +43,17 @@ class DokSarjanaController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $dok_sarjana = $request->all();
-        $dok_sarjana['uuid'] = (string)Uuid::generate();
+        $kat_dok=Katdoksarjana::find($request->kategori_id);
+        $dok_sarjana = new Dok_sarjana();
+        $dok_sarjana->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel')) {
-            $dok_sarjana['namafile']= time().$request->excel->getClientOriginalName();
-            $dok_sarjana['publikasi'] = (!isset($request->publikasi)) ? "tidak" :"ya";
-            $dok_sarjana['tahun'] = $request->tahun;
-            $dok_sarjana['nama'] = $request->nama;
-            $request->excel->storeAs('dok_sarjana', $dok_sarjana['namafile']);
+            $dok_sarjana->namafile= time().$request->excel->getClientOriginalName();
+            $dok_sarjana->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
+            $dok_sarjana->tahun = $request->tahun;
+            $dok_sarjana->nama = $request->nama;
+            $request->excel->storeAs('dok_sarjana', $dok_sarjana->namafile);
         }
-        Dok_sarjana::create($dok_sarjana);
+        $kat_dok->dok_sarjana()->save($dok_sarjana);
         return redirect()->route('dok_sarjana.index');
     }
 
@@ -74,9 +76,9 @@ class DokSarjanaController extends Controller
      */
     public function edit($uuid)
     {
-        //
         $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
-        return view('operator.dok_sarjana.edit',compact('dok_sarjana'));
+        $katdok_sarjana=Katdoksarjana::all();
+        return view('operator.dok_sarjana.edit',compact('dok_sarjana','katdok_sarjana'));
     }
 
     /**
@@ -96,6 +98,8 @@ class DokSarjanaController extends Controller
             'tahun' => 'required',            
         ]);
 
+        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
+        $kat_dok=Katdoksarjana::find($request->kategori_id);
         $dok_sarjana->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel') && isset($request->excel)) {
             $pathToFile = storage_path('app/dok_sarjana/' . $dok_sarjana->namafile);
@@ -106,8 +110,7 @@ class DokSarjanaController extends Controller
         $dok_sarjana->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
         $dok_sarjana->tahun = $request->tahun;
         $dok_sarjana->nama = $request->nama;
-        $dok_sarjana->update();
-
+        $kat_dok->dok_sarjana()->save($dok_sarjana);
         return redirect()->route('dok_sarjana.index');
 
     }

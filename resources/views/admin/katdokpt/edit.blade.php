@@ -7,17 +7,17 @@
           <div class="card bg-light">
                 <div class="card-header">Edit Kategori Dokumen</div>
                     <div class="card-body">
-                            <form action="{{ route('kategori-dokumen.update',$kat_dokumen->id) }}" method="POST">
-                                {{ csrf_field() }}
+                            <form action="{{ route('katdokpt.update',$katdokpt->id) }}" method="POST">
+                                @csrf
                                 @method('PUT')
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="InputNama">Nama Kategori</label>
-                                            <input type="text" class="form-control" name="nama" aria-describedby="help nama" placeholder="masukan nama" value="{{$kat_dokumen->nama}}">
+                                            <input type="text" class="form-control" name="nama" aria-describedby="help nama" placeholder="masukan nama" value="{{$katdokpt->nama}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Keterangan</label>
-                                            <input type="text" class="form-control" name="deskripsi" aria-describedby="help deskripsi" placeholder="masukan keterangan" value="{{$kat_dokumen->deskripsi}}">
+                                            <input type="text" class="form-control" name="deskripsi" aria-describedby="help deskripsi" placeholder="masukan keterangan" value="{{$katdokpt->deskripsi}}">
                                         </div>
                                       <button type="submit" class="btn btn-primary">Simpan</button>
                                       <a href="{{URL::previous()}}" class="btn btn-danger">Batal</a>

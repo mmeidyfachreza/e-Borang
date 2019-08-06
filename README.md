@@ -35,8 +35,6 @@ php artisan serv
 
 ## Menjalankan tes
 
-Explain how to run the automated tests for this system
-
 jika command diatas bisa dieksekusi tanpa error maka silahkan akses di browser 
 
 ```
@@ -63,7 +61,7 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+menyusul...
 
 ## Built With
 
@@ -81,7 +79,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Developer
 
-* **Muhammad Meidy Fachreza** - *Initial work* - [PurpleBooth](https://github.com/mmeidyfachreza)
+* **Muhammad Meidy Fachreza** - *Initial work* - [mmeidyfachreza](https://github.com/mmeidyfachreza)
 
 <!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
 

@@ -1,56 +1,65 @@
 # E-Borang
 
-merupakan website yang berisi dokumen kampus yang bersifat umum dan dapat diakses oleh mahasiswa, dosen, dan staff kampus
+merupakan website yang berisi dokumen kampus yang bersifat umum dan dapat diakses oleh mahasiswa, pimpinan, dan staff kampus
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Persyaratan
 
-What things you need to install the software and how to install them
+Berikut Beberapa Software yang harus diinstal sebelum menggunakan website ini, yaitu:
 
 ```
-Give examples
+Php 7.^
+Mysql
+Composer
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+setelah persyaratan diatas terpenuhi silahkan jalankan command dibawah ini pada folder dimana project ini kamu simpan menggunakan CMD dan pastikan service mysql kamu sudah hidup.
 
 ```
-Give the example
+composer install
+```
+```
+php artisan migrate:fresh --seed
 ```
 
-And repeat
+jika tidak ada error silahkan jalankan command dibawah ini
 
 ```
-until finished
+php artisan serv
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
+## Menjalankan tes
 
 Explain how to run the automated tests for this system
 
+jika command diatas bisa dieksekusi tanpa error maka silahkan akses di browser 
+
+```
+localhost:8000
+```
+
+
+<!-- 
 ### Break down into end to end tests
 
 Explain what these tests test and why
 
 ```
 Give an example
-```
+``` -->
 
-### And coding style tests
+<!-- ### And coding style tests
 
 Explain what these tests test and why
 
 ```
 Give an example
-```
+``` -->
 
 ## Deployment
 
@@ -58,30 +67,28 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Laravel 5.8
 
-## Contributing
+<!-- ## Kontribusi -->
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+<!-- Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. -->
 
-## Versioning
+<!-- Silahkan kontak saya  -->
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+<!-- ## Versioning
 
-## Authors
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).  -->
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+## Developer
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Muhammad Meidy Fachreza** - *Initial work* - [PurpleBooth](https://github.com/mmeidyfachreza)
 
-## License
+<!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+<!-- ## License
 
-## Acknowledgments
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details -->
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+## Ucapan Terimakasih
+
+* Terimakasih Kepada Bambang Prasetyo sebagai pelopor dari project ini agar bisa berjalan dan menghasilkan dollar hehe

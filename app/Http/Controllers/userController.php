@@ -100,9 +100,12 @@ class userController extends Controller
         $user->alamat = $request->alamat;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->update();
+        
         $role = Role::find($request->jabatan);
-        $user->roles()->attach($role);
+        
+        $user->roles()->sync($role->id);
+        
+        $user->update();
         return redirect()->route('user.index')->with('success','Berhasil menambahkan User');
     }
 

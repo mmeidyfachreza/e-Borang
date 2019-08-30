@@ -28,15 +28,15 @@ Route::middleware(['Khusus:admin'])->group(function () {
     //Route::resource('admin/dokumen', 'DokumenController');
 });
 
-Route::middleware(['Khusus:operator|admin'])->group(function () {
-    Route::get('/operator','operatorController@index')->name('operator.dashboard');
+Route::middleware(['Khusus:prodi|admin'])->group(function () {
+    Route::get('/prodi','operatorController@index')->name('prodi.dashboard');
     Route::resource('dok_sarjana', 'DokSarjanaController');
     Route::resource('dok_pt', 'DokPtController');
 
 });
 
-Route::middleware(['Khusus:admin|operator|dosen'])->group(function () {
-    Route::get('/dosen','dosenController@index')->name('dosen.dashboard');
+Route::middleware(['Khusus:admin|prodi|pemimpin'])->group(function () {
+    Route::get('/pemimpin','dosenController@index')->name('pemimpin.dashboard');
     Route::get('dok_sarjana/{uuid}/download','DokSarjanaController@download')->name('dok_sarjana.download'); 
     Route::get('dok_pt/{uuid}/download','DokPtController@download')->name('dok_pt.download');    
     Route::get('/dokumen-sarjana/{slug}','indexController@showSarjana');

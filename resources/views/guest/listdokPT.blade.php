@@ -34,7 +34,7 @@
                             <th scope="col">Tahun</th>
                             
                             @if (Auth::user())
-                            @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                            @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                             <th scope="col">Aksi</th>
                             @endif    
                             @endif
@@ -50,7 +50,7 @@
                                     <td>{{$data->tahun}}</td>
                                     
                                     @if (Auth::user())
-                                    @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                    @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                                     <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif

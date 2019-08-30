@@ -27,8 +27,10 @@ class indexController extends Controller
     {
         $submenus1= Katdokpt::all();
         $submenus2= Katdoksarjana::all();
-        $dok = Katdoksarjana::where('slug_judul',$slug);
-        return view('guest.listdok',compact('dok','submenus1','submenus2'));
+        $kat = Katdoksarjana::where('slug_judul',$slug)->firstOrFail();
+        $dok = Dok_sarjana::where('katdoksarjana_id',$kat->id)->get();
+        $title = "Sarjana/".$kat->nama;
+        return view('guest.listdokS',compact('dok','submenus1','submenus2','title'));
     }
 
     public function showPerguruanTinggi($slug)
@@ -37,23 +39,47 @@ class indexController extends Controller
         $submenus2= Katdoksarjana::all();
         $kat = Katdokpt::where('slug_judul',$slug)->firstOrFail();
         $dok = Dok_pt::where('katdokpt_id',$kat->id)->get();
-        $title = "Sarjana/".$kat->nama;
-        return view('guest.listdok',compact('dok','submenus1','submenus2','title'));
+        $title = "Perguruan Tinggi/".$kat->nama;
+        return view('guest.listdokPT',compact('dok','submenus1','submenus2','title'));
     }
 
     public function search1(Request $request)
     {
         # code...
+        $submenus1= Katdokpt::all();
+        $submenus2= Katdoksarjana::all();
         $dok_pt = Dok_pt::search1($request->namaS,$request->tahunS)->get();
         $dok_sarjana = Dok_sarjana::where('publikasi', "ya")->get();
-        return view('guest.welcome',compact('dok_sarjana','dok_pt'));
+        return view('guest.welcome',compact('dok_sarjana','dok_pt','submenus1','submenus2'));
     }
 
     public function search2(Request $request)
     {
         # code...
+        $submenus1= Katdokpt::all();
+        $submenus2= Katdoksarjana::all();
         $dok_sarjana = Dok_sarjana::search2($request->nama,$request->tahun)->get();
         $dok_pt = Dok_pt::where('publikasi', "ya")->get();
-        return view('guest.welcome',compact('dok_sarjana','dok_pt'));
+        return view('guest.welcome',compact('dok_sarjana','dok_pt','submenus1','submenus2'));
+    }
+
+    public function search3(Request $request)
+    {
+        # code...
+        $submenus1= Katdokpt::all();
+        $submenus2= Katdoksarjana::all();
+        $dok_pt = Dok_pt::search1($request->namaS,$request->tahunS)->get();
+        
+        return view('guest.listdok',compact('dok_pt','submenus1','submenus2','title'));
+    }
+
+    public function search4(Request $request)
+    {
+        # code...
+        $submenus1= Katdokpt::all();
+        $submenus2= Katdoksarjana::all();
+        $dok = Dok_sarjana::search2($request->nama,$request->tahun)->get();
+        dd($dok);
+        return view('guest.listdok',compact('dok','submenus1','submenus2','title'));
     }
 }

@@ -32,9 +32,10 @@
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Tahun</th>
+                            <th scope="col">Kategori</th>
                             
                             @if (Auth::user())
-                            @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                            @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                             <th scope="col">Aksi</th>
                             @endif    
                             @endif
@@ -48,9 +49,9 @@
                                     <th scope="row">{{ $x++ }}</th>
                                     <td>{{$data->nama}}</td>
                                     <td>{{$data->tahun}}</td>
-                                    
+                                    <td>{{ $data->kat_dokumen->nama }}</td>
                                     @if (Auth::user())
-                                    @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                    @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                                     <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif
@@ -83,9 +84,9 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Tahun</th>
-                                
+                                <th scope="col">Kategori</th>
                                 @if (Auth::user())
-                                @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                                 <th scope="col">Aksi</th>
                                 @endif    
                                 @endif
@@ -99,9 +100,9 @@
                                         <th scope="row">{{ $x++ }}</th>
                                         <td>{{$data->nama}}</td>
                                         <td>{{$data->tahun}}</td>
-                                        
+                                        <td>{{ $data->kat_dokumen->nama }}</td>
                                         @if (Auth::user())
-                                        @if (Auth::user()->roles->first()->name=="dosen"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="operator")
+                                        @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
                                         <td><a href="{{ route('dok_pt.download', $data->uuid) }}">Download</a></td>    
                                         @endif    
                                         @endif

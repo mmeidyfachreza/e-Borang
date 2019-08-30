@@ -23,6 +23,15 @@ setelah persyaratan diatas terpenuhi silahkan jalankan command dibawah ini pada 
 ```
 composer install
 ```
+
+duplikat file didalam proyek yaitu *.env.example* menjadi *.env* lalu setting database agar bisa terhubung ke Mysql 
+
+lalu jalankan perintah ini
+
+```
+php artisan key:generate
+```
+
 ```
 php artisan migrate:fresh --seed
 ```

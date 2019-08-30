@@ -14,13 +14,13 @@ class RoleTableSeeder extends Seeder
     {
         //
         $role_dosen = new Role();
-        $role_dosen->name = 'dosen';
-        $role_dosen->description = 'ini user dosen';
+        $role_dosen->name = 'pemimpin';
+        $role_dosen->description = 'ini user pemimpin';
         $role_dosen->save();
 
         $role_operator = new Role();
-        $role_operator->name = 'operator';
-        $role_operator->description = 'ini user operator';
+        $role_operator->name = 'prodi';
+        $role_operator->description = 'ini user prodi';
         $role_operator->save();
 
         $role_admin = new Role();

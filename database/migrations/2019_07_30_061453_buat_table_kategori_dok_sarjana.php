@@ -15,8 +15,8 @@ class BuatTableKategoriDokSarjana extends Migration
     {
         Schema::create('katdoksarjanas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('deskripsi');
+            $table->string('nama',25);
+            $table->string('deskripsi',50);
             $table->string('slug_judul');
             $table->timestamps();
         });

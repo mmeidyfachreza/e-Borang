@@ -20,9 +20,9 @@ class BuatTableDokSarjana extends Migration
             ->references('id')->on('katdoksarjanas')
             ->onDelete('cascade');
             $table->uuid('uuid')->nullable();
-            $table->string('nama');
-            $table->string('tahun');
-            $table->string('namafile')->nullable();
+            $table->string('nama',50);
+            $table->string('tahun',10);
+            $table->string('namafile',50)->nullable();
             $table->enum('publikasi',['ya','tidak']);
             $table->timestamps();
         });

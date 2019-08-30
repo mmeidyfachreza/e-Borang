@@ -17,34 +17,34 @@ class UserTableSeeder extends Seeder
         //
         $faker = Faker::create('id_ID');
 
-        $role_dosen = Role::where('name','dosen')->first();
-        $role_operator  = Role::where('name', 'operator')->first();
+        $role_dosen = Role::where('name','pemimpin')->first();
+        $role_operator  = Role::where('name', 'prodi')->first();
         $role_admin  = Role::where('name', 'admin')->first();
     
-        for ($i=0; $i <20 ; $i++) { 
+        for ($i=0; $i <5 ; $i++) { 
             # code...
             $dosen = new User();
             $dosen->name = $faker->firstName();
             $dosen->no_identitas= $faker->randomNumber($nbDigits=8,$strict=true);
-            $dosen->alamat= $faker->address;
+            $dosen->alamat= "jalan rahasia";
             $dosen->tgl_lahir= $faker->date($year='Y-m-d',$max='now');
-            $dosen->no_hp= $faker->phoneNumber;
+            $dosen->no_hp= "08533827312";
             $dosen->email = preg_replace('/@example\..*/', '@stmik.com', $faker->unique()->safeEmail);
-            $dosen->password = bcrypt('dosen');
+            $dosen->password = bcrypt('pemimpin');
             $dosen->save();
             $dosen->roles()->attach($role_dosen);
         }
 
-        for ($i=0; $i <20 ; $i++) { 
+        for ($i=0; $i <5 ; $i++) { 
             # code...
             $operator = new User();
             $operator->name = $faker->firstName();
             $operator->no_identitas= $faker->randomNumber($nbDigits=8,$strict=true);
-            $operator->alamat= $faker->address;
+            $operator->alamat= "jalan rahasia";
             $operator->tgl_lahir= $faker->date($year='Y-m-d',$max='now');
-            $operator->no_hp= $faker->phoneNumber;
+            $operator->no_hp= "08533827312";
             $operator->email = preg_replace('/@example\..*/', '@stmik.com', $faker->unique()->safeEmail);
-            $operator->password = bcrypt('operator');
+            $operator->password = bcrypt('prodi');
             $operator->save();
             $operator->roles()->attach($role_operator);
         }
@@ -52,9 +52,9 @@ class UserTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'admin';
         $admin->no_identitas= $faker->randomNumber($nbDigits=8,$strict=true);
-        $admin->alamat= $faker->address;
+        $admin->alamat= "jalan rahasia";
         $admin->tgl_lahir= $faker->date($year='Y-m-d',$max='now');
-        $admin->no_hp= $faker->phoneNumber;
+        $admin->no_hp= "08533827312";
         $admin->email = 'admin@stmik.com';
         $admin->password = bcrypt('admin123');
         $admin->save();

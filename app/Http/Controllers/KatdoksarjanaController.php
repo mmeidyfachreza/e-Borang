@@ -40,7 +40,16 @@ class KatdoksarjanaController extends Controller
     public function store(Request $request)
     {
         //
-        
+        $rules = [
+            'nama' => 'required|max:25|unique:katdokpts,nama,',
+            'deskripsi' => 'required|max:50',
+        ];
+        $customMessages = [
+            'nama.max' => 'Nama maksimal 25 karakter',
+            'nama.unique' => 'Nama kategori sudah ada',
+            'deskripsi.max' => 'Alamat maksimal 50 karakter',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $katdoksarjana = new Katdoksarjana();
         
         $katdoksarjana->nama = $request->nama;
@@ -70,7 +79,7 @@ class KatdoksarjanaController extends Controller
     public function edit($id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id)->first();
+        $katdoksarjana = Katdoksarjana::find($id);
         return view('admin.katdoksarjana.edit',compact('katdoksarjana'));
     }
 
@@ -84,7 +93,17 @@ class KatdoksarjanaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id)->first();
+        $katdoksarjana = Katdoksarjana::find($id);
+        $rules = [
+            'nama' => 'required|max:25|unique:katdoksarjanas,nama,'.$katdoksarjana->id,
+            'deskripsi' => 'required|max:50',
+        ];
+        $customMessages = [
+            'nama.max' => 'Nama maksimal 25 karakter',
+            'nama.unique' => 'Nama kategori sudah ada',
+            'deskripsi.max' => 'Alamat maksimal 50 karakter',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $katdoksarjana->update($request->all());
   
         return redirect()->route('katdoksarjana.index')
@@ -100,7 +119,7 @@ class KatdoksarjanaController extends Controller
     public function destroy($id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id)->first();
+        $katdoksarjana = Katdoksarjana::find($id);
         $katdoksarjana->delete();
   
         return redirect()->route('katdoksarjana.index')

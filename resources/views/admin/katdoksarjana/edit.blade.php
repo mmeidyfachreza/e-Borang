@@ -4,6 +4,15 @@
         <strong></strong>
         asdsad
     </div> --}}
+        @if(count($errors)>0)
+        <div class="alert alert-danger col-md-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
           <div class="card bg-light">
                 <div class="card-header">Edit Kategori Dokumen</div>
                     <div class="card-body">

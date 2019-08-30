@@ -41,6 +41,26 @@ class userController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'nama' => 'required|max:25',
+            'no_id' => 'required|digits_between:6,8',
+            'alamat' => 'required|max:50',
+            'tgl_lahir' => 'required|date',
+            'no_hp' => 'required|digits_between:10,12',
+            'email' => 'required|max:30|email|unique:users',
+            'jabatan' => 'required|numeric',
+            'password' => 'required',
+        ];
+        $customMessages = [
+            'nama.max' => 'Nama maksimal 25 karakter',
+            'no_id.digits_between' => 'No identitas harus angka, minimal 5 dan maksimal 8 digit',
+            'alamat.max' => 'Alamat maksimal 50 karakter',
+            'tgl_lahir.date' => 'Format tanggal salah',
+            'no_hp.digits_between' => 'nomor handphone harus angka, minimal 10 dan maksimal 12 digit',
+            'email.max' => 'email maksimal 30 karakter',
+            'jabatan.numeric' => 'Jabatan harus dipilih',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $user = new User();
         $user->name = $request->nama;
         $user->no_hp = $request->no_hp;
@@ -91,8 +111,27 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $user = User::find($id);
+        $rules = [
+            'nama' => 'required|max:25',
+            'no_id' => 'required|digits_between:5,8',
+            'alamat' => 'required|max:50',
+            'tgl_lahir' => 'required|date',
+            'no_hp' => 'required|digits_between:10,12',
+            'email' => 'required|max:30|email|unique:users,email,'.$user->id,
+            'jabatan' => 'required|numeric',
+        ];
+        $customMessages = [
+            'nama.max' => 'Nama maksimal 25 karakter',
+            'no_id.digits_between' => 'No identitas harus angka, minimal 5 dan maksimal 8 digit',
+            'alamat.max' => 'Alamat maksimal 50 karakter',
+            'tgl_lahir.date' => 'Format tanggal salah',
+            'no_hp.digits_between' => 'nomor handphone harus angka, minimal 10 dan maksimal 12 digit',
+            'email.max' => 'email maksimal 30 karakter',
+            'email.unique' => 'email sudah pernah didaftarkan',
+            'jabatan.numeric' => 'Jabatan harus dipilih',
+        ];
+        $this->validate($request, $rules, $customMessages);
         $user->name = $request->nama;
         $user->tgl_lahir = $request->tgl_lahir;
         $user->no_hp = $request->no_hp;
@@ -106,7 +145,7 @@ class userController extends Controller
         $user->roles()->sync($role->id);
         
         $user->update();
-        return redirect()->route('user.index')->with('success','Berhasil menambahkan User');
+        return redirect()->route('user.index')->with('success','Berhasil merubah User');
     }
 
     /**

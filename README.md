@@ -89,6 +89,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Developer
 
 * **Muhammad Meidy Fachreza** - *Initial work* - [mmeidyfachreza](https://github.com/mmeidyfachreza)
+* **Bambang Prasetyo** - *Initial work* - 
 
 <!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
 

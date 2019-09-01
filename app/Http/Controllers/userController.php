@@ -45,7 +45,7 @@ class userController extends Controller
             'nama' => 'required|max:25',
             'no_id' => 'required|digits_between:6,8',
             'alamat' => 'required|max:50',
-            'tgl_lahir' => 'required|date',
+            'tgl_lahir' => 'required|date_format:d-m-Y',
             'no_hp' => 'required|digits_between:10,12',
             'email' => 'required|max:30|email|unique:users',
             'jabatan' => 'required|numeric',
@@ -55,7 +55,7 @@ class userController extends Controller
             'nama.max' => 'Nama maksimal 25 karakter',
             'no_id.digits_between' => 'No identitas harus angka, minimal 5 dan maksimal 8 digit',
             'alamat.max' => 'Alamat maksimal 50 karakter',
-            'tgl_lahir.date' => 'Format tanggal salah',
+            'tgl_lahir.date_format' => 'Format tanggal salah',
             'no_hp.digits_between' => 'nomor handphone harus angka, minimal 10 dan maksimal 12 digit',
             'email.max' => 'email maksimal 30 karakter',
             'jabatan.numeric' => 'Jabatan harus dipilih',
@@ -64,7 +64,7 @@ class userController extends Controller
         $user = new User();
         $user->name = $request->nama;
         $user->no_hp = $request->no_hp;
-        $user->tgl_lahir = $request->tgl_lahir;
+        $user->tgl_lahir = date("Y-m-d", strtotime($request->tgl_lahir));
         $user->no_identitas = $request->no_id;
         $user->alamat = $request->alamat;
         $user->email = $request->email;
@@ -116,7 +116,7 @@ class userController extends Controller
             'nama' => 'required|max:25',
             'no_id' => 'required|digits_between:5,8',
             'alamat' => 'required|max:50',
-            'tgl_lahir' => 'required|date',
+            'tgl_lahir' => 'required|date_format:d-m-Y',
             'no_hp' => 'required|digits_between:10,12',
             'email' => 'required|max:30|email|unique:users,email,'.$user->id,
             'jabatan' => 'required|numeric',
@@ -125,15 +125,16 @@ class userController extends Controller
             'nama.max' => 'Nama maksimal 25 karakter',
             'no_id.digits_between' => 'No identitas harus angka, minimal 5 dan maksimal 8 digit',
             'alamat.max' => 'Alamat maksimal 50 karakter',
-            'tgl_lahir.date' => 'Format tanggal salah',
+            'tgl_lahir.date_format' => 'Format tanggal salah',
             'no_hp.digits_between' => 'nomor handphone harus angka, minimal 10 dan maksimal 12 digit',
             'email.max' => 'email maksimal 30 karakter',
             'email.unique' => 'email sudah pernah didaftarkan',
             'jabatan.numeric' => 'Jabatan harus dipilih',
         ];
         $this->validate($request, $rules, $customMessages);
+        
         $user->name = $request->nama;
-        $user->tgl_lahir = $request->tgl_lahir;
+        $user->tgl_lahir = date("Y-m-d", strtotime($request->tgl_lahir));
         $user->no_hp = $request->no_hp;
         $user->no_identitas = $request->no_id;
         $user->alamat = $request->alamat;

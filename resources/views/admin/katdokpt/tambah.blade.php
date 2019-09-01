@@ -9,19 +9,25 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('katdokpt.store') }}" method="POST">
-    {{ csrf_field() }}
-        <div class="form-group">
-            <div class="form-group">
-                <label for="InputNama">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" placeholder="masukan nama">
-            </div>
-            <div class="form-group">
-                <label for="Inputdeskripsi">Deskripsi</label>
-                <input type="text" class="form-control" id="deskripsi" name="deskripsi" aria-describedby="help deskripsi" placeholder="masukan deskripsi">
-            </div>
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-      </form>
+<div class="card bg-light">
+    <div class="card-header"><div style="float:left">Tambah Kategori Dokumen Perguruan Tinggi</div></div>
+    <div class="card-body">
+        <form action="{{ route('katdokpt.store') }}" method="POST">
+            {{ csrf_field() }}
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="InputNama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" required placeholder="masukan nama" value="{{ old('nama') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdeskripsi">Deskripsi</label>
+                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" aria-describedby="help deskripsi" required placeholder="masukan deskripsi" value="{{ old('deskripsi') }}">
+                    </div>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+        </form>
+    </div> 
+</div>
+
 @endsection
 

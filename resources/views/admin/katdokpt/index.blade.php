@@ -28,7 +28,7 @@
                                           <form action="{{ route('katdokpt.destroy',$data->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
-                                          <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                          <td><button type="submit" onclick="return confirm('Dokumen yang berkaitan dengan kategori ini akan terhapus semua, tetap hapus?')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                             <a class="btn btn-warning" href="{{ route('katdokpt.edit', $data->id) }}"><i class="far fa-edit"></i></a></td>
                                           </form>
                                       </tr>

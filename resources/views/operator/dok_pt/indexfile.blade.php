@@ -24,7 +24,6 @@
                                 <?php $x=1?>
                                 @foreach ($dok_pt as $data)
                                     <tr>
-                                        
                                         <th scope="row">{{ $x++ }}</th>
                                         <td>{{$data->nama}}</td>
                                         <td>{{$data->tahun}}</td>

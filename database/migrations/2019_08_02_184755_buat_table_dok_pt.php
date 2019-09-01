@@ -25,6 +25,7 @@ class BuatTableDokPt extends Migration
             $table->string('namafile',50)->nullable();
             $table->enum('publikasi',['ya','tidak']);
             $table->timestamps();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

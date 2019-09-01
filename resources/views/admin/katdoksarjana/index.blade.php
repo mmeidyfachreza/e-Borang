@@ -6,7 +6,7 @@
         </div>
       @endif
           <div class="card bg-light">
-                <div class="card-header"><div style="float:left">Kategori Dokumen Perguruan Tinggi</div>  <div style="float:right"><a class="btn btn-primary" href="{{route('katdoksarjana.create')}}">Tambah</a></div></div>
+                <div class="card-header"><div style="float:left">Kategori Dokumen Sarjana</div>  <div style="float:right"><a class="btn btn-primary" href="{{route('katdoksarjana.create')}}">Tambah</a></div></div>
                 <div class="card-body" style="clear:both">
                     <div class="table-responsive">
                         <table class="table table-striped" style="width:100%">
@@ -28,7 +28,7 @@
                                           <form action="{{ route('katdoksarjana.destroy',$data->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
-                                          <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                          <td><button type="submit" onclick="return confirm('Dokumen yang berkaitan dengan kategori ini akan terhapus semua, tetap hapus?')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                             <a class="btn btn-warning" href="{{ route('katdoksarjana.edit', $data->id) }}"><i class="far fa-edit"></i></a></td>
                                           </form>
                                       </tr>

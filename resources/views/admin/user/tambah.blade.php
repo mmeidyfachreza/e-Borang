@@ -21,23 +21,23 @@
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label >No Identitas</label>
-                                            <input type="text" class="form-control" name="no_id" aria-describedby="" required placeholder="masukan No Identitas" >
+                                            <input type="text" class="form-control" name="no_id" aria-describedby="" required placeholder="masukan No Identitas" value="{{ old('no_id') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >Nama Lengkap</label>
-                                            <input type="text" class="form-control" name="nama" aria-describedby="" required placeholder="masukan nama" >
+                                            <input type="text" class="form-control" name="nama" aria-describedby="" required placeholder="masukan nama" value="{{ old('nama') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >Tanggal Lahir</label>
-                                            <input type="text" class="form-control" name="tgl_lahir" aria-describedby="" required placeholder="Tahun-Bulan-Tanggal" >
+                                            <input type="text" class="form-control" name="tgl_lahir" aria-describedby="" required placeholder="dd-mm-yyyy" value="{{ old('tgl_lahir') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >No HP</label>
-                                            <input type="text" class="form-control" name="no_hp" aria-describedby="" required placeholder="masukan Alamat" >
+                                            <input type="text" class="form-control" name="no_hp" aria-describedby="" required placeholder="masukan Alamat" value="{{ old('no_hp') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >Alamat</label>
-                                            <input type="textarea" class="form-control" name="alamat" aria-describedby="" required placeholder="masukan Alamat" >
+                                            <input type="textarea" class="form-control" name="alamat" aria-describedby="" required placeholder="masukan Alamat" value="{{ old('alamat') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >Jabatan</label>
@@ -51,7 +51,7 @@
                                         <p>note: Email dan Password digunakan untuk login ke sistem</p>
                                         <div class="form-group">
                                             <label >Email</label>
-                                            <input type="email" class="form-control" name="email" aria-describedby="" required placeholder="masukan Email" >
+                                            <input type="email" class="form-control" name="email" aria-describedby="" required placeholder="masukan Email" value="{{ old('email') }}">
                                         </div>
                                         <div class="form-group">
                                             <label >Password</label>

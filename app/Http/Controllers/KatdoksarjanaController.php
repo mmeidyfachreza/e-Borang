@@ -41,11 +41,11 @@ class KatdoksarjanaController extends Controller
     {
         //
         $rules = [
-            'nama' => 'required|max:25|unique:katdokpts,nama,',
+            'nama' => 'required|max:50|unique:katdokpts,nama,',
             'deskripsi' => 'required|max:50',
         ];
         $customMessages = [
-            'nama.max' => 'Nama maksimal 25 karakter',
+            'nama.max' => 'Nama maksimal 50 karakter',
             'nama.unique' => 'Nama kategori sudah ada',
             'deskripsi.max' => 'Alamat maksimal 50 karakter',
         ];
@@ -95,11 +95,11 @@ class KatdoksarjanaController extends Controller
         //
         $katdoksarjana = Katdoksarjana::find($id);
         $rules = [
-            'nama' => 'required|max:25|unique:katdoksarjanas,nama,'.$katdoksarjana->id,
+            'nama' => 'required|max:50|unique:katdoksarjanas,nama,'.$katdoksarjana->id,
             'deskripsi' => 'required|max:50',
         ];
         $customMessages = [
-            'nama.max' => 'Nama maksimal 25 karakter',
+            'nama.max' => 'Nama maksimal 50 karakter',
             'nama.unique' => 'Nama kategori sudah ada',
             'deskripsi.max' => 'Alamat maksimal 50 karakter',
         ];

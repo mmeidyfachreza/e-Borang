@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label >Tanggal Lahir</label>
-                                        <input type="text" class="form-control" name="tgl_lahir" value="{{$user->tgl_lahir}}" required placeholder="tahun-bulan-hari" >
+                                        <input type="text" class="form-control" name="tgl_lahir" value="{{date("d-m-Y", strtotime($user->tgl_lahir))}}" required placeholder="dd-mm-yyyy" >
                                     </div>
                                     <div class="form-group">
                                         <label >No HP</label>

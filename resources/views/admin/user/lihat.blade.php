@@ -25,7 +25,7 @@
                             <td>
                                 {{$user->name}}<br>
                                 {{$user->no_identitas}}<br>
-                                {{$user->tgl_lahir}}<br>
+                                {{date("d-m-Y", strtotime($user->tgl_lahir))}}<br>
                                 {{$user->alamat}}<br>
                                 {{$user->no_hp}}<br>
                                 {{$user->roles->first()->name}}<br>

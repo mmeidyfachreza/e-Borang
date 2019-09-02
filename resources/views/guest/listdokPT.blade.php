@@ -13,9 +13,9 @@
     </div> --}}
 
         <div class="card bg-light">
-            <div class="card-header">Dokumen {{$title}}</div>
+            <div class="card-header">Dokumen Perguruan Tinggi/{{$title}}</div>
                 <div class="card-body">
-                        <form class="form-inline" action="{{ route('guest.searchsarjana') }}" method="POST">
+                        <form class="form-inline" action="{{ route('guest.searchpt2',$title) }}" method="POST">
                             {{ csrf_field() }}
                             <label for="email" class="mr-sm-2">Nama:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" name="nama" value="{{request('nama')}}">
@@ -23,7 +23,7 @@
                             <input type="text" class="form-control mb-2 mr-sm-2" name="tahun" value="{{request('tahun')}}">
                             <button type="submit" class="btn btn-primary mb-2 mr-sm-2"><i class="fa fa-search" aria-hidden="true"></i></button>
                             @if (!request('nama')==null||!request('tahun')==null)
-                            <a href="{{url('/')}}" class="btn btn-danger mb-2">Ulang</a>    
+                            <a href="{{URL::previous()}}" class="btn btn-danger mb-2">Ulang</a>    
                             @endif
                         </form>
                     <table class="table table-striped" style="width:100%">

@@ -59,18 +59,10 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Lupa
-						</span>
-						<a class="txt2" href="#">
-							Email / Password?
-						</a>
-					</div>
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="#">
-							Buat Akun Silahkan Hubungi Admin
+							Buat Akun atau Lupa Password Silahkan Hubungi Admin
 							<i class="fas fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

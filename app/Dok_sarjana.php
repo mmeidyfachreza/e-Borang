@@ -15,8 +15,48 @@ class Dok_sarjana extends Model
 
     public function scopeSearch2($query,$nama,$tahun)
     {
-        return $query->where('nama', $nama)->where('tahun', $tahun)->orWhere('tahun', $tahun)->orWhere('nama', $nama)->where('publikasi','ya');
-   
-        //return $query->where('tahun', $tahun);
+        $split = preg_split('/\s+/', $nama, -1, PREG_SPLIT_NO_EMPTY);
+        
+        return $query
+        ->where(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('nama', 'like', "%{$value}%");
+            }
+        })
+        ->where('tahun', $tahun)
+        ->where('publikasi','ya')
+        
+        ->orWhere('tahun', $tahun)
+        ->orWhere(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('nama', 'like', "%{$value}%");
+            }
+        })
+        ->where('publikasi','ya');
+
+    }
+
+    public function scopeSearchbykatS($query,$nama,$tahun,$kat_id)
+    {
+        $split = preg_split('/\s+/', $nama, -1, PREG_SPLIT_NO_EMPTY);
+        
+        return $query
+        ->where(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('nama', 'like', "%{$value}%");
+            }
+        })
+        ->where('tahun', $tahun)
+        ->where('publikasi','ya')
+        ->where('katdoksarjana_id',$kat_id)
+        ->orWhere('tahun', $tahun)
+        ->orWhere(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('nama', 'like', "%{$value}%");
+            }
+        })
+        ->where('publikasi','ya')
+        ->where('katdoksarjana_id',$kat_id);
+    
     }
 }

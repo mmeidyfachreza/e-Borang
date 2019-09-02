@@ -17,8 +17,8 @@ class UserTableSeeder extends Seeder
         //
         $faker = Faker::create('id_ID');
 
-        $role_dosen = Role::where('name','pemimpin')->first();
-        $role_operator  = Role::where('name', 'prodi')->first();
+        $role_pemimpin = Role::where('name','pemimpin')->first();
+        $role_prodi  = Role::where('name', 'prodi')->first();
         $role_admin  = Role::where('name', 'admin')->first();
     
         for ($i=0; $i <5 ; $i++) { 
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder
             $dosen->email = preg_replace('/@example\..*/', '@stmik.com', $faker->unique()->safeEmail);
             $dosen->password = bcrypt('pemimpin');
             $dosen->save();
-            $dosen->roles()->attach($role_dosen);
+            $dosen->roles()->attach($role_pemimpin);
         }
 
         for ($i=0; $i <5 ; $i++) { 
@@ -46,7 +46,7 @@ class UserTableSeeder extends Seeder
             $operator->email = preg_replace('/@example\..*/', '@stmik.com', $faker->unique()->safeEmail);
             $operator->password = bcrypt('prodi');
             $operator->save();
-            $operator->roles()->attach($role_operator);
+            $operator->roles()->attach($role_prodi);
         }
 
         $admin = new User();

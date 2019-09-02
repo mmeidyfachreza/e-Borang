@@ -17,6 +17,10 @@ Auth::routes();
 Route::get('/','indexController@index');
 Route::post('/pencarian/pt','indexController@search1')->name('guest.searchpt');
 Route::post('/pencarian/sarjana','indexController@search2')->name('guest.searchsarjana');
+Route::post('/pencarian/sarjana/{title}','indexController@searchbykat1')->name('guest.searchsarjana2');
+Route::post('/pencarian/pt/{title}','indexController@searchbykat2')->name('guest.searchpt2');
+Route::get('/dokumen-sarjana/{slug}','indexController@showSarjana');
+Route::get('/dokumen-perguruan-tinggi/{slug}','indexController@showPerguruanTinggi');
 
 
 Route::middleware(['Khusus:admin'])->group(function () {
@@ -36,11 +40,8 @@ Route::middleware(['Khusus:prodi|admin'])->group(function () {
 });
 
 Route::middleware(['Khusus:admin|prodi|pemimpin'])->group(function () {
-    Route::get('/pemimpin','dosenController@index')->name('pemimpin.dashboard');
     Route::get('dok_sarjana/{uuid}/download','DokSarjanaController@download')->name('dok_sarjana.download'); 
     Route::get('dok_pt/{uuid}/download','DokPtController@download')->name('dok_pt.download');    
-    Route::get('/dokumen-sarjana/{slug}','indexController@showSarjana');
-    Route::get('/dokumen-perguruan-tinggi/{slug}','indexController@showPerguruanTinggi');
 });
 
 

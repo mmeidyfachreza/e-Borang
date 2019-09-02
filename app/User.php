@@ -73,13 +73,23 @@ class User extends Authenticatable
 
     public function scopeSearch($query,$nama,$email,$no_hp)
     {
+        $split = preg_split('/\s+/', $nama, -1, PREG_SPLIT_NO_EMPTY);
         
-        return $query->where('name','like','%'.$nama.'%')
-        ->where('email','like','%'.$email.'%')
-        ->where('no_hp', 'like','%'.$no_hp.'%')
-        ->orWhere('no_hp', 'like','%'.$no_hp.'%')
-        ->orWhere('name','like','%'.$nama.'%')
-        ->orWhere('email','like','%'.$email.'%');
+        return $query
+        ->where(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('name', 'like', "%{$value}%");
+            }
+        })
+        ->where('email', $email)
+        ->where('no_hp', $no_hp)
+        ->orWhere('no_hp', $no_hp)
+        ->orWhere(function ($q) use ($split) {
+            foreach ($split as $value) {
+              $q->orWhere('name', 'like', "%{$value}%");
+            }
+        })
+        ->orWhere('email', $email);
    
         //return $query->where('email','banawa');
     }

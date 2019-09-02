@@ -45,6 +45,17 @@ class DokPtController extends Controller
     {
         //
         $kat_dok=Katdokpt::find($request->kategori_id);
+        $rules = [
+            
+            'tahun' => 'required|date_format:Y',
+            
+        ];
+        $customMessages = [
+            
+            'tahun.date_format' => 'Format tahun salah',
+            
+        ];
+        $this->validate($request, $rules, $customMessages);
         $dok_pt = new Dok_pt();
         $dok_pt->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel')) {
@@ -92,10 +103,17 @@ class DokPtController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        $this->validate($request,[
-            'nama' => 'required',
-            'tahun' => 'required',   
-        ]);
+        $rules = [
+            
+            'tahun' => 'required|date_format:Y',
+            
+        ];
+        $customMessages = [
+            
+            'tahun.date_format' => 'Format tahun salah',
+            
+        ];
+        $this->validate($request, $rules, $customMessages);
         $dok_pt = Dok_pt::where('uuid', $uuid)->firstOrFail();
         $kat_dok=Katdokpt::find($request->kategori_id);
         $dok_pt->uuid = (string)Uuid::generate();

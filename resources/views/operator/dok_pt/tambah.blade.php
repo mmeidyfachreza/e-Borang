@@ -1,22 +1,27 @@
 @extends('operator.index')
 @section('subContent')
-    {{-- <div class="alert alert-success col-md-4">
-        <strong></strong>
-        asdsad
-    </div> --}}
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
           <div class="card bg-light">
-                <div class="card-header">Upload Dokumen</div>
+                <div class="card-header">Upload Dokumen Perguruan Tinggi</div>
                     <div class="card-body">
                             <form action="{{ route('dok_pt.store') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="InputNama">Nama File</label>
-                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" placeholder="masukan nama">
+                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" required placeholder="masukan nama">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" placeholder="masukan tahun">
+                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" required placeholder="masukan tahun">
                                         </div>
                                         <div class="form-group">
                                                 <label >Kategori Dokumen</label>
@@ -33,7 +38,7 @@
                                         </div>
                                         <div class="form-group">
                                                 <label for="exampleFormControlFile1">Pilih FIle</label>
-                                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="excel">
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1" required name="excel">
                                         </div>
                                       <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>

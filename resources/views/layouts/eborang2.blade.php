@@ -94,8 +94,10 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <p class="dropdown-item" disable> User : {{Auth::user()->roles->first()->name}}</p>
                             <div class="dropdown-divider"></div>
+                            @if (Auth::user()->roles->first()->id==2||Auth::user()->roles->first()->id==3)
                             <a class="dropdown-item" href="{{route(Auth::user()->roles->first()->name.'.dashboard')}}">Beranda</a>
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>        
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

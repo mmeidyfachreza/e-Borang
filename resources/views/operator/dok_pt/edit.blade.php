@@ -1,11 +1,16 @@
 @extends('operator.index')
 @section('subContent')
-    {{-- <div class="alert alert-success col-md-4">
-        <strong></strong>
-        asdsad
-    </div> --}}
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
           <div class="card bg-light">
-                <div class="card-header">Ubah Data Dokumen</div>
+                <div class="card-header">Edit Dokumen Perguruan Tinggi</div>
                     <div class="card-body">
                             <form action="{{ route('dok_pt.update',$dok_pt->uuid) }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
@@ -13,11 +18,11 @@
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="InputNama">Nama File</label>
-                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" placeholder="masukan nama" value="{{$dok_pt->nama}}">
+                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" required placeholder="masukan nama" value="{{$dok_pt->nama}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" placeholder="masukan tahun" value="{{$dok_pt->tahun}}">
+                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" required placeholder="masukan tahun" value="{{$dok_pt->tahun}}">
                                         </div>
                                         <div class="form-group">
                                                 <label >Kategori Dokumen</label>
@@ -39,7 +44,7 @@
                                         </div>
                                         <div class="form-group">
                                                 <label for="exampleFormControlFile1">Pilih FIle Baru</label>
-                                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="excel">
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1"  name="excel">
                                         </div>
                                       <button type="submit" class="btn btn-primary">Simpan</button>
                                       <a href="{{URL::previous()}}" class="btn btn-danger">Batal</a>

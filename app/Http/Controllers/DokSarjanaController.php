@@ -43,6 +43,18 @@ class DokSarjanaController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            
+            'tahun' => 'required|date_format:Y',
+            
+        ];
+        $customMessages = [
+            
+            'tahun.date_format' => 'Format tahun salah',
+            
+        ];
+        $this->validate($request, $rules, $customMessages);
+
         $kat_dok=Katdoksarjana::find($request->kategori_id);
         $dok_sarjana = new Dok_sarjana();
         $dok_sarjana->uuid = (string)Uuid::generate();
@@ -93,10 +105,17 @@ class DokSarjanaController extends Controller
         //
         $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
         
-        $this->validate($request,[
-            'nama' => 'required',
-            'tahun' => 'required',            
-        ]);
+        $rules = [
+            
+            'tahun' => 'required|date_format:Y',
+            
+        ];
+        $customMessages = [
+            
+            'tahun.date_format' => 'Format tahun salah',
+            
+        ];
+        $this->validate($request, $rules, $customMessages);
 
         $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
         $kat_dok=Katdoksarjana::find($request->kategori_id);

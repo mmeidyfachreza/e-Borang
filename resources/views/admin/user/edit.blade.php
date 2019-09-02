@@ -48,7 +48,7 @@
                                         <select name="jabatan" class="custom-select">
                                             {{-- <option selected>Pilih</option> --}}
                                             @foreach ($jabatan as $item)
-                                                <option @if ($item->id==$user->roles()->first()->name)
+                                                <option @if ($item->id==$user->roles->first()->id)
                                                    selected 
                                                 @endif value="{{$item->id}}">{{$item->name}}</option>    
                                             @endforeach

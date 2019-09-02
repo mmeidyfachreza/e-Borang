@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <div id="header-container" class="header-border"  style="height:200px">
+        <div id="header-container" class="header-border"  style="height:400px">
             <div class="headerdiv">
               <a href="" class="headerleft">
                 <img src="{{asset('image/header.jpg')}}" class="img-fluid" alt="header SU">
@@ -115,7 +115,7 @@
                 </div>
               </nav>
         
-              <div class="container-fluid" style="padding-top:15px;padding-bottom:15px;background-color:white;min-height:300px">
+              <div class="container-fluid" style="padding-top:15px;padding-bottom:15px;background-color:#00ffee;min-height:600px">
                 @yield('content')
               </div>
             </div>

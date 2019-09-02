@@ -1,6 +1,10 @@
 @extends('layouts.eborang2')
 @section('content')
     @yield('subContent')
+    <div>
+        <h1 class="mt-4">Halaman user prodi</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt pariatur inventore, voluptate exercitationem quam voluptatem necessitatibus doloremque et quisquam. Earum temporibus quo soluta similique magnam, dolor quidem vel mollitia dolorem?</p>
+    </div>
 @endsection
 
 @section('sidebar')

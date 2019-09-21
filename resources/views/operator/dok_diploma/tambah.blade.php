@@ -10,9 +10,9 @@
 </div>
 @endif
           <div class="card bg-light">
-                <div class="card-header">Upload Dokumen Sarjana</div>
+                <div class="card-header">Upload Dokumen Diploma</div>
                     <div class="card-body">
-                            <form action="{{ route('dok_sarjana.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('dok_diploma.store') }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                     <div class="form-group">
                                         <div class="form-group">

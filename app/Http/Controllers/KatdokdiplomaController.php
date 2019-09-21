@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Katdoksarjana;
+use App\Katdokdiploma;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class KatdoksarjanaController extends Controller
+class KatdokdiplomaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class KatdoksarjanaController extends Controller
     public function index()
     {
         //
-        $katdoksarjanas= Katdoksarjana::all(); 
-        return view("admin.katdoksarjana.index",compact('katdoksarjanas'));
+        $katdokdiplomas= Katdokdiploma::all(); 
+        return view("admin.katdokdiploma.index",compact('katdokdiplomas'));
     }
 
     /**
@@ -28,7 +28,7 @@ class KatdoksarjanaController extends Controller
     public function create()
     {
        //
-       return view("admin.katdoksarjana.tambah");
+       return view("admin.katdokdiploma.tambah");
     }
 
     /**
@@ -50,22 +50,22 @@ class KatdoksarjanaController extends Controller
             'deskripsi.max' => 'Alamat maksimal 50 karakter',
         ];
         $this->validate($request, $rules, $customMessages);
-        $katdoksarjana = new Katdoksarjana();
+        $katdokdiploma = new Katdokdiploma();
         
-        $katdoksarjana->nama = $request->nama;
-        $katdoksarjana->deskripsi = $request->deskripsi;
-        $katdoksarjana->slug_judul = Str::slug($request->nama);
-        $katdoksarjana->save();
-        return redirect()->route('katdoksarjana.index')->with('success','Data Berhasil Ditambahkan');
+        $katdokdiploma->nama = $request->nama;
+        $katdokdiploma->deskripsi = $request->deskripsi;
+        $katdokdiploma->slug_judul = Str::slug($request->nama);
+        $katdokdiploma->save();
+        return redirect()->route('katdokdiploma.index')->with('success','Data Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Katdoksarjana  $katdoksarjana
+     * @param  \App\Katdokdiploma  $katdokdiploma
      * @return \Illuminate\Http\Response
      */
-    public function show(Katdoksarjana $katdoksarjana)
+    public function show(Katdokdiploma $katdokdiploma)
     {
         //
     }
@@ -73,29 +73,29 @@ class KatdoksarjanaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Katdoksarjana  $katdoksarjana
+     * @param  \App\Katdokdiploma  $katdokdiploma
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id);
-        return view('admin.katdoksarjana.edit',compact('katdoksarjana'));
+        $katdokdiploma = Katdokdiploma::find($id);
+        return view('admin.katdokdiploma.edit',compact('katdokdiploma'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Katdoksarjana  $katdoksarjana
+     * @param  \App\Katdokdiploma  $katdokdiploma
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id);
+        $katdokdiploma = Katdokdiploma::find($id);
         $rules = [
-            'nama' => 'required|max:50|unique:katdoksarjanas,nama,'.$katdoksarjana->id,
+            'nama' => 'required|max:50|unique:katdokdiplomas,nama,'.$katdokdiploma->id,
             'deskripsi' => 'required|max:50',
         ];
         $customMessages = [
@@ -104,25 +104,25 @@ class KatdoksarjanaController extends Controller
             'deskripsi.max' => 'Alamat maksimal 50 karakter',
         ];
         $this->validate($request, $rules, $customMessages);
-        $katdoksarjana->update($request->all());
+        $katdokdiploma->update($request->all());
   
-        return redirect()->route('katdoksarjana.index')
+        return redirect()->route('katdokdiploma.index')
                         ->with('success','Data Berhasil Dirubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Katdoksarjana  $katdoksarjana
+     * @param  \App\Katdokdiploma  $katdokdiploma
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $katdoksarjana = Katdoksarjana::find($id);
-        $katdoksarjana->delete();
+        $katdokdiploma = Katdokdiploma::find($id);
+        $katdokdiploma->delete();
   
-        return redirect()->route('katdoksarjana.index')
+        return redirect()->route('katdokdiploma.index')
                         ->with('success','Data Berhasil Dihapus');
     }
 }

@@ -27,7 +27,7 @@
             <a href="{{route('katdokpt.index')}}" class="list-group-item list-group-item-action bg-light">Perguruan Tinggi</a>
         </li>
         <li>
-            <a href="{{route('katdoksarjana.index')}}" class="list-group-item list-group-item-action bg-light">Sarjana</a>
+            <a href="{{route('katdokdiploma.index')}}" class="list-group-item list-group-item-action bg-light">Diploma</a>
         </li>
     </ul>
     {{-- <a href="#" class="list-group-item list-group-item-action bg-light">menu tambahan</a>

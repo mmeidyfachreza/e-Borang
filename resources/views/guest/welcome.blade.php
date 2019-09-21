@@ -13,9 +13,9 @@
     </div> --}}
 
         <div class="card bg-light">
-            <div class="card-header">Dokumen Sarjana</div>
+            <div class="card-header">Dokumen Diploma</div>
                 <div class="card-body">
-                        <form class="form-inline" action="{{ route('guest.searchsarjana') }}" method="POST">
+                        <form class="form-inline" action="{{ route('guest.searchdiploma') }}" method="POST">
                             {{ csrf_field() }}
                             <label for="email" class="mr-sm-2">Nama:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" name="nama" value="{{request('nama')}}">
@@ -44,7 +44,7 @@
                         </thead>
                         <tbody>
                             <?php $x=1?>
-                            @foreach ($dok_sarjana as $data)
+                            @foreach ($dok_diploma as $data)
                                 <tr>
                                     <th scope="row">{{ $x++ }}</th>
                                     <td>{{$data->nama}}</td>
@@ -52,7 +52,7 @@
                                     <td>{{ $data->kat_dokumen->nama }}</td>
                                     @if (Auth::user())
                                     @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
-                                    <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
+                                    <td><a href="{{ route('dok_diploma.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif
                                     

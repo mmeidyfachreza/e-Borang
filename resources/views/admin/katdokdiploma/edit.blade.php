@@ -16,17 +16,17 @@
           <div class="card bg-light">
                 <div class="card-header">Edit Kategori Dokumen</div>
                     <div class="card-body">
-                            <form action="{{ route('katdoksarjana.update',$katdoksarjana->id) }}" method="POST">
+                            <form action="{{ route('katdokdiploma.update',$katdokdiploma->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="InputNama">Nama Kategori</label>
-                                            <input type="text" class="form-control" name="nama" aria-describedby="help nama" placeholder="masukan nama" required value="{{$katdoksarjana->nama or old('nama') }}">
+                                            <input type="text" class="form-control" name="nama" aria-describedby="help nama" placeholder="masukan nama" required value="{{$katdokdiploma->nama or old('nama') }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Keterangan</label>
-                                            <input type="text" class="form-control" name="deskripsi" aria-describedby="help deskripsi" placeholder="masukan keterangan" required value="{{$katdoksarjana->deskripsi}}">
+                                            <input type="text" class="form-control" name="deskripsi" aria-describedby="help deskripsi" placeholder="masukan keterangan" required value="{{$katdokdiploma->deskripsi}}">
                                         </div>
                                       <button type="submit" class="btn btn-primary">Simpan</button>
                                       <a href="{{URL::previous()}}" class="btn btn-danger">Batal</a>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BuatTableDokSarjana extends Migration
+class BuatTableDokDiploma extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class BuatTableDokSarjana extends Migration
      */
     public function up()
     {
-        Schema::create('dok_sarjanas', function (Blueprint $table) {
+        Schema::create('dok_diplomas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('katdoksarjana_id')->unsigned();
-            $table->foreign('katdoksarjana_id')
-            ->references('id')->on('katdoksarjanas')
+            $table->bigInteger('katdokdiploma_id')->unsigned();
+            $table->foreign('katdokdiploma_id')
+            ->references('id')->on('katdokdiplomas')
             ->onDelete('cascade');
             $table->uuid('uuid')->nullable();
             $table->string('nama',50);
@@ -35,9 +35,9 @@ class BuatTableDokSarjana extends Migration
      */
     public function down()
     {
-        Schema::table('dok_sarjanas', function (Blueprint $table) {
-            $table->dropForeign(['kat_dok_sarjana_id']);
+        Schema::table('dok_diplomas', function (Blueprint $table) {
+            $table->dropForeign(['kat_dok_diploma_id']);
         });
-        Schema::dropIfExists('dok_sarjanas');
+        Schema::dropIfExists('dok_diplomas');
     }
 }

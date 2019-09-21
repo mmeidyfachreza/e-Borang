@@ -13,12 +13,12 @@
             </li>    
             @endforeach
     </ul>
-    <a href="#homeSubmenu2" aria-expanded="false" data-toggle="collapse" class="dropdown-toggle list-group-item list-group-item-action bg-light">Dokumen Sarjana</a>
+    <a href="#homeSubmenu2" aria-expanded="false" data-toggle="collapse" class="dropdown-toggle list-group-item list-group-item-action bg-light">Dokumen Diploma</a>
     <ul class="list-unstyled collapse" id="homeSubmenu2" style="">
         <?php  $b=1?>
         @foreach ($submenus2 as $item)
         <li>
-                <a href="{{url('dokumen-sarjana',$item->slug_judul)}}" class="list-group-item list-group-item-action bg-light">{{$b++}}. {{$item->nama}}</a>
+                <a href="{{url('dokumen-diploma',$item->slug_judul)}}" class="list-group-item list-group-item-action bg-light">{{$b++}}. {{$item->nama}}</a>
         </li>    
         @endforeach
     </ul>

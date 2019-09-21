@@ -13,9 +13,9 @@
     </div> --}}
 
         <div class="card bg-light">
-            <div class="card-header">Dokumen Sarjana/{{$title}}</div>
+            <div class="card-header">Dokumen Diploma/{{$title}}</div>
                 <div class="card-body">
-                        <form class="form-inline" action="{{ route('guest.searchsarjana2',$title) }}" method="POST">
+                        <form class="form-inline" action="{{ route('guest.searchdiploma2',$title) }}" method="POST">
                             {{ csrf_field() }}
                             <label for="email" class="mr-sm-2">Nama:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" name="nama" value="{{request('nama')}}">
@@ -51,7 +51,7 @@
                                     
                                     @if (Auth::user())
                                     @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
-                                    <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
+                                    <td><a href="{{ route('dok_diploma.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif
                                     

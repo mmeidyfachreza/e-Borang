@@ -10,9 +10,9 @@
     </div>
 @endif
 <div class="card bg-light">
-    <div class="card-header"><div style="float:left">Tambah Kategori Dokumen Sarjana</div>  </div>
+    <div class="card-header"><div style="float:left">Tambah Kategori Dokumen Diploma</div>  </div>
     <div class="card-body">
-        <form action="{{ route('katdoksarjana.store') }}" method="POST">
+        <form action="{{ route('katdokdiploma.store') }}" method="POST">
             {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-group">

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Dok_sarjana;
-use App\Katdoksarjana;
+use App\Dok_diploma;
+use App\Katdokdiploma;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\File;
 
-class DokSarjanaController extends Controller
+class DokDiplomaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class DokSarjanaController extends Controller
     public function index()
     {
         //
-        $dok_sarjana = Dok_sarjana::all();
-        return view('operator.dok_sarjana.indexfile', compact('dok_sarjana'));
+        $dok_diploma = Dok_diploma::all();
+        return view('operator.dok_diploma.indexfile', compact('dok_diploma'));
     }
 
     /**
@@ -30,8 +30,8 @@ class DokSarjanaController extends Controller
     public function create()
     {
         //
-        $kat_dok=Katdoksarjana::all();
-        return view('operator.dok_sarjana.tambah',compact('kat_dok'));
+        $kat_dok=Katdokdiploma::all();
+        return view('operator.dok_diploma.tambah',compact('kat_dok'));
     }
 
     /**
@@ -55,18 +55,18 @@ class DokSarjanaController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
 
-        $kat_dok=Katdoksarjana::find($request->kategori_id);
-        $dok_sarjana = new Dok_sarjana();
-        $dok_sarjana->uuid = (string)Uuid::generate();
+        $kat_dok=Katdokdiploma::find($request->kategori_id);
+        $dok_diploma = new Dok_diploma();
+        $dok_diploma->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel')) {
-            $dok_sarjana->namafile= time().$request->excel->getClientOriginalName();
-            $dok_sarjana->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
-            $dok_sarjana->tahun = $request->tahun;
-            $dok_sarjana->nama = $request->nama;
-            $request->excel->storeAs('dok_sarjana', $dok_sarjana->namafile);
+            $dok_diploma->namafile= time().$request->excel->getClientOriginalName();
+            $dok_diploma->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
+            $dok_diploma->tahun = $request->tahun;
+            $dok_diploma->nama = $request->nama;
+            $request->excel->storeAs('dok_diploma', $dok_diploma->namafile);
         }
-        $kat_dok->dok_sarjana()->save($dok_sarjana);
-        return redirect()->route('dok_sarjana.index');
+        $kat_dok->dok_diploma()->save($dok_diploma);
+        return redirect()->route('dok_diploma.index');
     }
 
     /**
@@ -88,9 +88,9 @@ class DokSarjanaController extends Controller
      */
     public function edit($uuid)
     {
-        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
-        $katdok_sarjana=Katdoksarjana::all();
-        return view('operator.dok_sarjana.edit',compact('dok_sarjana','katdok_sarjana'));
+        $dok_diploma = Dok_diploma::where('uuid', $uuid)->firstOrFail();
+        $katdok_diploma=Katdokdiploma::all();
+        return view('operator.dok_diploma.edit',compact('dok_diploma','katdok_diploma'));
     }
 
     /**
@@ -103,7 +103,7 @@ class DokSarjanaController extends Controller
     public function update(Request $request, $uuid)
     {
         //
-        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
+        $dok_diploma = Dok_diploma::where('uuid', $uuid)->firstOrFail();
         
         $rules = [
             
@@ -117,20 +117,20 @@ class DokSarjanaController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
 
-        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
-        $kat_dok=Katdoksarjana::find($request->kategori_id);
-        $dok_sarjana->uuid = (string)Uuid::generate();
+        $dok_diploma = Dok_diploma::where('uuid', $uuid)->firstOrFail();
+        $kat_dok=Katdokdiploma::find($request->kategori_id);
+        $dok_diploma->uuid = (string)Uuid::generate();
         if ($request->hasFile('excel') && isset($request->excel)) {
-            $pathToFile = storage_path('app/dok_sarjana/' . $dok_sarjana->namafile);
+            $pathToFile = storage_path('app/dok_diploma/' . $dok_diploma->namafile);
             File::delete($pathToFile);
-            $dok_sarjana->namafile= time().$request->excel->getClientOriginalName();
-            $request->excel->storeAs('dok_sarjana', $dok_sarjana->namafile);
+            $dok_diploma->namafile= time().$request->excel->getClientOriginalName();
+            $request->excel->storeAs('dok_diploma', $dok_diploma->namafile);
         }
-        $dok_sarjana->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
-        $dok_sarjana->tahun = $request->tahun;
-        $dok_sarjana->nama = $request->nama;
-        $kat_dok->dok_sarjana()->save($dok_sarjana);
-        return redirect()->route('dok_sarjana.index');
+        $dok_diploma->publikasi = (!isset($request->publikasi)) ? "tidak" :"ya";
+        $dok_diploma->tahun = $request->tahun;
+        $dok_diploma->nama = $request->nama;
+        $kat_dok->dok_diploma()->save($dok_diploma);
+        return redirect()->route('dok_diploma.index');
 
     }
 
@@ -143,19 +143,19 @@ class DokSarjanaController extends Controller
     public function destroy($uuid)
     {
         //
-        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/dok_sarjana/' . $dok_sarjana->namafile);
+        $dok_diploma = Dok_diploma::where('uuid', $uuid)->firstOrFail();
+        $pathToFile = storage_path('app/dok_diploma/' . $dok_diploma->namafile);
        
         File::delete($pathToFile);
-        $dok_sarjana->delete();
-        return redirect()->route('dok_sarjana.index');
+        $dok_diploma->delete();
+        return redirect()->route('dok_diploma.index');
 
     }
 
     public function download($uuid)
     {
-        $dok_sarjana = Dok_sarjana::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/dok_sarjana/' .$dok_sarjana->namafile);
+        $dok_diploma = Dok_diploma::where('uuid', $uuid)->firstOrFail();
+        $pathToFile = storage_path('app/dok_diploma/' .$dok_diploma->namafile);
         return response()->download($pathToFile);
     }
 

@@ -16,16 +16,16 @@ Auth::routes();
 
 Route::get('/','indexController@index');
 Route::post('/pencarian/pt','indexController@search1')->name('guest.searchpt');
-Route::post('/pencarian/sarjana','indexController@search2')->name('guest.searchsarjana');
-Route::post('/pencarian/sarjana/{title}','indexController@searchbykat1')->name('guest.searchsarjana2');
+Route::post('/pencarian/diploma','indexController@search2')->name('guest.searchdiploma');
+Route::post('/pencarian/diploma/{title}','indexController@searchbykat1')->name('guest.searchdiploma2');
 Route::post('/pencarian/pt/{title}','indexController@searchbykat2')->name('guest.searchpt2');
-Route::get('/dokumen-sarjana/{slug}','indexController@showSarjana');
+Route::get('/dokumen-diploma/{slug}','indexController@showDiploma');
 Route::get('/dokumen-perguruan-tinggi/{slug}','indexController@showPerguruanTinggi');
 
 
 Route::middleware(['Khusus:admin'])->group(function () {
     Route::resource('katdokpt', 'KatdokptController');
-    Route::resource('katdoksarjana', 'KatdoksarjanaController');
+    Route::resource('katdokdiploma', 'KatdokdiplomaController');
     Route::resource('admin/user', 'userController');
     Route::get('admin','adminController@index')->name('admin.dashboard');
     Route::post('/user','userController@search')->name('user.search');
@@ -34,13 +34,13 @@ Route::middleware(['Khusus:admin'])->group(function () {
 
 Route::middleware(['Khusus:prodi|admin'])->group(function () {
     Route::get('/prodi','operatorController@index')->name('prodi.dashboard');
-    Route::resource('dok_sarjana', 'DokSarjanaController');
+    Route::resource('dok_diploma', 'DokDiplomaController');
     Route::resource('dok_pt', 'DokPtController');
 
 });
 
 Route::middleware(['Khusus:admin|prodi|pemimpin'])->group(function () {
-    Route::get('dok_sarjana/{uuid}/download','DokSarjanaController@download')->name('dok_sarjana.download'); 
+    Route::get('dok_diploma/{uuid}/download','DokDiplomaController@download')->name('dok_diploma.download'); 
     Route::get('dok_pt/{uuid}/download','DokPtController@download')->name('dok_pt.download');    
 });
 

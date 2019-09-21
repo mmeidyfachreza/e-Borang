@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dok_sarjana extends Model
+class Dok_diploma extends Model
 {
     //
     protected $fillable = ['uuid','namafile','publikasi', 'tahun', 'nama'];
     public function kat_dokumen()
     {
-        return $this->belongsTo('App\Katdoksarjana','katdoksarjana_id');
+        return $this->belongsTo('App\Katdokdiploma','katdokdiploma_id');
     }
 
     public function scopeSearch2($query,$nama,$tahun)
@@ -48,7 +48,7 @@ class Dok_sarjana extends Model
         })
         ->where('tahun', $tahun)
         ->where('publikasi','ya')
-        ->where('katdoksarjana_id',$kat_id)
+        ->where('katdokdiploma_id',$kat_id)
         ->orWhere('tahun', $tahun)
         ->orWhere(function ($q) use ($split) {
             foreach ($split as $value) {
@@ -56,7 +56,7 @@ class Dok_sarjana extends Model
             }
         })
         ->where('publikasi','ya')
-        ->where('katdoksarjana_id',$kat_id);
+        ->where('katdokdiploma_id',$kat_id);
     
     }
 }

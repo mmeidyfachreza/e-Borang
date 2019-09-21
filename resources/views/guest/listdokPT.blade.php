@@ -51,7 +51,7 @@
                                     
                                     @if (Auth::user())
                                     @if (Auth::user()->roles->first()->name=="pemimpin"||Auth::user()->roles->first()->name=="admin"||Auth::user()->roles->first()->name=="prodi")
-                                    <td><a href="{{ route('dok_sarjana.download', $data->uuid) }}">Download</a></td>    
+                                    <td><a href="{{ route('dok_diploma.download', $data->uuid) }}">Download</a></td>    
                                     @endif    
                                     @endif
                                     

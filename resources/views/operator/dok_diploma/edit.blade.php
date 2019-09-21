@@ -10,26 +10,26 @@
 </div>
 @endif
           <div class="card bg-light">
-                <div class="card-header">Edit Dokumen Sarjana</div>
+                <div class="card-header">Edit Dokumen Diploma</div>
                     <div class="card-body">
-                            <form action="{{ route('dok_sarjana.update',$dok_sarjana->uuid) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('dok_diploma.update',$dok_diploma->uuid) }}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 @method('PUT')
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="InputNama">Nama File</label>
-                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" required placeholder="masukan nama" value="{{$dok_sarjana->nama}}">
+                                            <input type="text" class="form-control" id="nama" name="nama" aria-describedby="help nama" required placeholder="masukan nama" value="{{$dok_diploma->nama}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Tahun</label>
-                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" required placeholder="masukan tahun" value="{{$dok_sarjana->tahun}}">
+                                            <input type="text" class="form-control" id="tahun" name="tahun" aria-describedby="help tahun" required placeholder="masukan tahun" value="{{$dok_diploma->tahun}}">
                                         </div>
                                         <div class="form-group">
                                                 <label >Kategori Dokumen</label>
                                                 <select name="kategori_id" class="custom-select">
                                                     {{-- <option selected>Pilih</option> --}}
-                                                    @foreach ($katdok_sarjana as $item)
-                                                        <option @if ($item->id==$dok_sarjana->katdokpt_id)
+                                                    @foreach ($katdok_diploma as $item)
+                                                        <option @if ($item->id==$dok_diploma->katdokpt_id)
                                                            selected 
                                                         @endif value="{{$item->id}}">{{$item->nama}}</option>    
                                                     @endforeach
@@ -37,10 +37,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="InputTahun">Publikasi : ya </label>
-                                            <input type="checkbox" name="publikasi" id="publikasi" @if ($dok_sarjana->publikasi=="ya") checked @else  @endif value="ya">
+                                            <input type="checkbox" name="publikasi" id="publikasi" @if ($dok_diploma->publikasi=="ya") checked @else  @endif value="ya">
                                         </div>
                                         <div class="form-group">
-                                                <label for="exampleFormControlFile1">File saat ini : {{$dok_sarjana->namafile}}</label>
+                                                <label for="exampleFormControlFile1">File saat ini : {{$dok_diploma->namafile}}</label>
                                         </div>
                                         <div class="form-group">
                                                 <label for="exampleFormControlFile1">Pilih FIle Baru</label>

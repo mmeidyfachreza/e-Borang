@@ -5,7 +5,7 @@
         asdsad
     </div> --}}
           <div class="card bg-light">
-                <div class="card-header">Dokumen Sarjana</div>
+                <div class="card-header">Dokumen Diploma</div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" style="width:100%">
@@ -22,7 +22,7 @@
                             </thead>
                             <tbody>
                                 <?php $x=1?>
-                                @foreach ($dok_sarjana as $data)
+                                @foreach ($dok_diploma as $data)
                                     <tr>
                                         <th scope="row">{{ $x++ }}</th>
                                         <td>{{$data->nama}}</td>
@@ -30,12 +30,12 @@
                                         <td>{{ $data->namafile }}</td>
                                         <td>{{ $data->kat_dokumen->nama }}</td>
                                         <td>{{ $data->publikasi }}</td>
-                                        <form action="{{ route('dok_sarjana.destroy',$data->uuid) }}" method="POST">
+                                        <form action="{{ route('dok_diploma.destroy',$data->uuid) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                         <td><button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                          <a class="btn btn-warning" href="{{ route('dok_sarjana.edit', $data->uuid) }}"><i class="far fa-edit"></i></a>
-                                          <a class="btn btn-primary" href="{{ route('dok_sarjana.download', $data->uuid) }}"><i class="fas fa-file-download"></i></a></td>
+                                          <a class="btn btn-warning" href="{{ route('dok_diploma.edit', $data->uuid) }}"><i class="far fa-edit"></i></a>
+                                          <a class="btn btn-primary" href="{{ route('dok_diploma.download', $data->uuid) }}"><i class="fas fa-file-download"></i></a></td>
                                         </form>
                                         
                                     </tr>

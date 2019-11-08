@@ -25,10 +25,10 @@
 </head>
 <body>
     <div id="app">
-        <div id="header-container" class="header-border"  style="height:400px">
+        <div id="header-container" class="header-border"  style="height:200px">
             <div class="headerdiv">
               <a href="" class="headerleft">
-                <img src="{{asset('image/header.jpg')}}" class="img-fluid" alt="header SU">
+                <img src="{{asset('image/header.jpg')}}" style="width: 100%;height: 240px;"alt="header SU">
               </a>
             </div>     
         </div>
